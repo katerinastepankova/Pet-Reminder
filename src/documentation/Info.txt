@@ -1,0 +1,88 @@
+Barvy:
+- žlutá: #FFFBDF
+- světle zelená: #C6FFC1
+- středně zelená: #34656D
+- tmavě zelená: #334443
+
+Komponenty PC:
+HP:
+- Menu (součástí je logo a vyhledávání)
+- Vyhledávání
+- Úvod na HP
+- Kartičky s mazlíčky
+- Kartička pro přidání nového mazlíčka
+- Patička
+- Vyskakující okýnko (heslo)
+Vyhledávání:
+- Menu
+- "Nalezeno"
+- Kartičky
+- Patička
+- Vyskakující okýnko (heslo)
+Registrace:
+- Menu
+- Formulář 
+- Patička 
+- Vyskakující okýnko (registrace)
+Profil/Úprava/Smazání mazlíčka
+- Menu
+- Formulář
+- Patička
+- Vyskakující okýnko (Úprava, Smazání)
+O Projektu:
+- Menu
+- Fotky a text (O projektu, O Kačce, O Bety)
+- Patička
+Kontakt:
+- Menu
+- Kontakt
+- Patička
+
+Komponenty mobil:
+HP:
+- Menu (logo, vyhledávání, hamburger)
+- Vyhledávání
+- Hamburger menu
+- Úvod na HP
+- Kartičky s mazlíčky
+- Kartička pro přidání nového mazlíčka
+- Patička
+- Vyskakující okýnko (heslo)
+Vyhledávání:
+- Menu (logo, vyhledávání, hamburger)
+- "Nalezeno"
+- Kartičky
+- Patička
+- Vyskakující okýnko (heslo)
+Registrace:
+- Menu (logo, vyhledávání, hamburger)
+- Formulář 
+- Patička 
+- Vyskakující okýnko (registrace)
+Profil/Úprava/Smazání mazlíčka
+- Menu (logo, vyhledávání, hamburger)
+- Formulář
+- Patička
+- Vyskakující okýnko (Úprava, Smazání)
+O Projektu:
+- Menu (logo, vyhledávání, hamburger)
+- Fotky a text (O projektu, O Kačce, O Bety)
+- Patička
+Kontakt:
+- Menu (logo, vyhledávání, hamburger)
+- Kontakt
+- Patička
+
+Zakulacení PC: 
+- vyhledávání: 10px
+- kartičky: 50px
+- políčka formuláře: 7px
+- tlačítka: 10px
+ 
+Zakulacení mobil: 
+- vyhledávání/menu: 10px
+- kartičky: 50px
+- políčka formuláře: 7px
+- tlačítka: 10px
+
+!!! Velikosti jednotlivých komponent, či mezery mezi nimi jsou k nalezení v UX wireframu ZDE: https://xd.adobe.com/view/22510b81-19a5-473b-800c-cdded5648cd2-7702/
