@@ -6,7 +6,9 @@ import './style.css';
 import OProjektu from './components/OProjektu';
 
 const App = () => {
-  return <></>;
+  return <>
+ 
+  </>;
 };
 
 render(<App />, document.querySelector('#app'));
