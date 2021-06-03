@@ -24,6 +24,14 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 import CloseIcon from '@material-ui/icons/Close';
 import { AddCircle } from '@material-ui/icons';
+import { Dialog } from '@material-ui/core';
+import { DialogTitle } from '@material-ui/core';
+import { DialogContent } from '@material-ui/core';
+import { DialogActions } from '@material-ui/core';
+import { DialogContentText } from '@material-ui/core';
+import { TextField} from '@material-ui/core';
+import PasswordDialog from '../PasswordDialog';
+
 
 const theme = createMuiTheme({
   breakpoints: {
@@ -59,6 +67,7 @@ const AnimalCard = () => {
     },
     media: {
       maxHeight: 200,
+      backgroundColor:'white',
     },
     card: {
       maxWidth: 250,
@@ -204,43 +213,12 @@ const AnimalCard = () => {
             </CardContent>
 
             <CardActions>
-              <Button
-                onClick={handleClick}
-                size="medium"
-                style={{ color: 'white', backgroundColor: '#34656d' }}
-              >
-                Více informací
-              </Button>
-              <Snackbar
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                message="Dodám později :-)"
-                action={
-                  <React.Fragment>
-                    <Button
-                      color="secondary"
-                      size="small"
-                      onClick={handleClose}
-                    ></Button>
-                    <IconButton
-                      size="medium"
-                      aria-label="close"
-                      color="inherit"
-                      onClick={handleClose}
-                    >
-                      <CloseIcon fontSize="large" />
-                    </IconButton>
-                  </React.Fragment>
-                }
-              />
+              
+            <PasswordDialog/>
             </CardActions>
           </Paper>
         </Grid>
+
         <Grid item xs={12} sm={6} md={4}>
           <Paper
             className={classes.card}
@@ -252,6 +230,7 @@ const AnimalCard = () => {
               alt="Pes"
               image="/assets/horse.svg"
               title="Contemplative Reptile"
+              
             />
             <CardContent>
               <Typography
@@ -279,6 +258,7 @@ const AnimalCard = () => {
               >
                 Více informací
               </Button>
+
               <Snackbar
                 anchorOrigin={{
                   vertical: 'top',
