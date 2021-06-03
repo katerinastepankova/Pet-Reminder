@@ -1,0 +1,22 @@
+.projektText {
+  margin: 50px;
+  padding: 25px;
+}
+h1 {
+  text-align: center;
+}
+.person {
+  display: flex;
+  margin: 50px;
+  align-items: center;
+}
+.personImage {
+  flex: 0 1 auto;
+  max-height: 150px;
+  margin-right: 10px;
+}
+.personImage2 {
+  flex: 0 1 auto;
+  max-height: 200px;
+  margin-right: 10px;
+}
