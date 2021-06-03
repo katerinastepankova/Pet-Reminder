@@ -17,26 +17,7 @@ const OProjektu = () => {
         pořádané společností Czechitas, z.s.
       </p>
 
-      <div className="person">
-        <img className="personImage" src="assets/DSC02548-ig.jpg" alt="Bety" />
-        <div className="personInfo">
-        <h3>Bety</h3>
-        <p>
-        Tichá holka, co se snaží proplout životem. Momentálně s přítelem rekonstruujeme velký dům. Mám 3-letou fenku Aiminku. Říkám ji štětka do záchoda, protože je to kříženec Border Kolie a Vlkodava. Je to celý můj svět. Jo a jsem závislá na čokoládě.
-        <br/>
-          Studovala jsem hnojárnu střední i vysokou, kterou jsem nakonec
-          nedokončila. Poté nastoupila jako ošetřovatelka v zoo na půl roku.
-          Poté přišlo stěhování a s tím i hledání další práce. Nakonec jsem se
-          usadila na zákaznické podpoře v energiích. Žádná sláva, naopak hodně
-          stresu a nevyhovující práce, proto jsem začala programovat a úspěšně
-          pokračuji. Ráda tvořím! Ať už jde o focení, kresbu, psaní textů,
-          dělání návrhů grafiky, nebo streamování. A samozřejmě programování.
-          Cokoliv můžu tvořit, to mě naplňuje. Do budoucna si chci pořídit
-          koníka na rekreaci (dřív jsem 10 let jezdila, i závodně). Ráda koukám
-          na Netflix a na všechny možné druhy Anime.
-        </p>
-        </div>
-      </div>
+     
 
       <div className="person">
         <img
@@ -45,7 +26,7 @@ const OProjektu = () => {
           alt="Bety"
         />
         <div className="personInfo">
-        <h3>Katka</h3>
+        <h3>O autrce</h3>
         <p>
           Baví mě jásat nad každým sebemenším programovacím úspěchem a doufám,
           že to budu moci už brzy dělat celé dny. Doufám, že se naše aplikace

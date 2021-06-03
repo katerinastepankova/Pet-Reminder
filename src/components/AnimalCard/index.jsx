@@ -29,37 +29,38 @@ import { DialogTitle } from '@material-ui/core';
 import { DialogContent } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { DialogContentText } from '@material-ui/core';
-import { TextField} from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
 
 
-const theme = createMuiTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 500,
-      md: 800,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#34656d',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
 
 const AnimalCard = () => {
+  const theme = createMuiTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 500,
+        md: 800,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+    palette: {
+      primary: {
+        light: '#757ce8',
+        main: '#3f50b5',
+        dark: '#34656d',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  });
+
   const useStyles = makeStyles({
     root: {
       flexGrow: 1,
@@ -67,19 +68,27 @@ const AnimalCard = () => {
     },
     media: {
       maxHeight: 200,
-      backgroundColor:'white',
+      backgroundColor: 'white',
     },
     card: {
       maxWidth: 250,
-      maxHeight: 500,
+      maxHeight: 400,
       padding: theme.spacing(4),
       textAlign: 'center',
       color: theme.palette.text.secondary,
       justifyContent: 'center',
+      border: 10,
+      
     },
     container: {
+    
       justifyContent: 'center',
+      alignItems: 'center',
+      maxWidth: 900,
     },
+    grid:{
+      marginLeft:0,
+    }
 
     /* paper: {
       padding: theme.spacing(2),
@@ -113,25 +122,22 @@ const AnimalCard = () => {
         spacing={2}
         justify="center"
       >
-        <Grid item xs={12} sm={6} md={4}>
-          <Paper
-            className={classes.card}
-            style={{ backgroundColor: '#34656d' }}
-          >
+        <Grid item xs={12} sm={6} md={4} className={classes.grid}>
+          <Paper className={classes.card} style={{ backgroundColor: 'white' }}>
             <CardMedia
               className={classes.media}
               component="img"
-              alt="Pes"
-              image="/assets/question.svg"
-              title="Contemplative Reptile"
+              alt="Paw"
+              image="/assets/paw.png"
+              title="Nový záznam"
             />
             <CardContent>
               <Typography
-                variant="h4"
-                component="h4"
-                style={{ color: 'white' }}
+                variant="h5"
+                component="h5"
+                style={{ color: '#737373' }}
               >
-                Přidej zvíře
+                Nový záznam
               </Typography>
               <Typography
                 variant="h6"
@@ -140,44 +146,16 @@ const AnimalCard = () => {
                 style={{ color: 'white' }}
               ></Typography>
             </CardContent>
-
             <CardActions>
               <IconButton
                 color="primary"
                 aria-label="Nový záznam"
                 onClick={handleClick}
                 size="medium"
-                style={{ color: '#34656d', backgroundColor: '#c6ffc1' }}
+                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
               >
                 <AddCircle size="medium" />
               </IconButton>
-              <Snackbar
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                message="Dodám později :-)"
-                action={
-                  <React.Fragment>
-                    <Button
-                      color="secondary"
-                      size="small"
-                      onClick={handleClose}
-                    ></Button>
-                    <IconButton
-                      size="medium"
-                      aria-label="close"
-                      color="inherit"
-                      onClick={handleClose}
-                    >
-                      <CloseIcon fontSize="large" />
-                    </IconButton>
-                  </React.Fragment>
-                }
-              />
             </CardActions>
           </Paper>
         </Grid>
@@ -208,13 +186,11 @@ const AnimalCard = () => {
                 component="h6"
                 style={{ color: '#34656d' }}
               >
-                Pes, 3 roky
+                pes, 3 roky
               </Typography>
             </CardContent>
-
             <CardActions>
-              
-            <PasswordDialog/>
+              <PasswordDialog />
             </CardActions>
           </Paper>
         </Grid>
@@ -228,9 +204,8 @@ const AnimalCard = () => {
               className={classes.media}
               component="img"
               alt="Pes"
-              image="/assets/horse.svg"
+              image="/assets/Cat.png"
               title="Contemplative Reptile"
-              
             />
             <CardContent>
               <Typography
@@ -238,7 +213,7 @@ const AnimalCard = () => {
                 component="h4"
                 style={{ color: '#34656d' }}
               >
-                Hugo
+                Micka
               </Typography>
               <Typography
                 variant="h6"
@@ -246,7 +221,7 @@ const AnimalCard = () => {
                 component="h6"
                 style={{ color: '#34656d' }}
               >
-                Pes, 3 roky
+                kočka, 3 roky
               </Typography>
             </CardContent>
 
