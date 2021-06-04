@@ -21,25 +21,24 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
-
+import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
-import { AddCircle } from '@material-ui/icons';
-import { Dialog } from '@material-ui/core';
+import { AddCircle, RowingTwoTone } from '@material-ui/icons';
+import { Box, Dialog } from '@material-ui/core';
 import { DialogTitle } from '@material-ui/core';
 import { DialogContent } from '@material-ui/core';
 import { DialogActions } from '@material-ui/core';
 import { DialogContentText } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
-
-
+import { borders } from '@material-ui/system';
 
 const AnimalCard = () => {
   const theme = createMuiTheme({
     breakpoints: {
       values: {
         xs: 0,
-        sm: 500,
+        sm: 300,
         md: 800,
         lg: 1280,
         xl: 1920,
@@ -63,12 +62,14 @@ const AnimalCard = () => {
 
   const useStyles = makeStyles({
     root: {
+     
       flexGrow: 1,
       justifyContent: 'center',
     },
     media: {
       maxHeight: 200,
       backgroundColor: 'white',
+      border: '1.5px solid  #737373'
     },
     card: {
       maxWidth: 250,
@@ -76,18 +77,22 @@ const AnimalCard = () => {
       padding: theme.spacing(4),
       textAlign: 'center',
       color: theme.palette.text.secondary,
-      justifyContent: 'center',
-      border: 10,
-      
+      alignItems: 'center',
+      flexDirection: 'column',
+      border: 2,
     },
     container: {
-    
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
       maxWidth: 900,
     },
-    grid:{
-      marginLeft:0,
+    grid: {
+      marginLeft: 0,
+    },
+    actions:{
+      flexDirection: 'column',
+      justifyContent: 'center',
     }
 
     /* paper: {
@@ -123,13 +128,15 @@ const AnimalCard = () => {
         justify="center"
       >
         <Grid item xs={12} sm={6} md={4} className={classes.grid}>
-          <Paper className={classes.card} style={{ backgroundColor: 'white' }}>
+          <Paper className={classes.card} style={{ backgroundColor: 'white' }} >
+           
             <CardMedia
               className={classes.media}
               component="img"
               alt="Paw"
               image="/assets/paw.png"
               title="Nový záznam"
+              
             />
             <CardContent>
               <Typography
@@ -146,24 +153,26 @@ const AnimalCard = () => {
                 style={{ color: 'white' }}
               ></Typography>
             </CardContent>
-            <CardActions>
+            <CardActions className= {classes.actions}>
               <IconButton
                 color="primary"
                 aria-label="Nový záznam"
                 onClick={handleClick}
                 size="medium"
                 style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+                
               >
                 <AddCircle size="medium" />
               </IconButton>
             </CardActions>
+            
           </Paper>
         </Grid>
 
         <Grid item xs={12} sm={6} md={4}>
           <Paper
             className={classes.card}
-            style={{ backgroundColor: '#c6ffc1' }}
+            style={{ backgroundColor: '#EAFFF6 ' }}
           >
             <CardMedia
               className={classes.media}
@@ -176,7 +185,7 @@ const AnimalCard = () => {
               <Typography
                 variant="h4"
                 component="h4"
-                style={{ color: '#34656d' }}
+                style={{ color: '#00C2CB ' }}
               >
                 Gaspar
               </Typography>
@@ -184,13 +193,19 @@ const AnimalCard = () => {
                 variant="h6"
                 color="textSecondary"
                 component="h6"
-                style={{ color: '#34656d' }}
+                style={{ color: '#737373 ' }}
               >
                 pes, 3 roky
               </Typography>
             </CardContent>
             <CardActions>
               <PasswordDialog />
+
+              <IconButton
+                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+              >
+                <DeleteForeverTwoToneIcon />
+              </IconButton>
             </CardActions>
           </Paper>
         </Grid>
@@ -198,7 +213,7 @@ const AnimalCard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Paper
             className={classes.card}
-            style={{ backgroundColor: '#c6ffc1' }}
+            style={{ backgroundColor: '#EAFFF6 ' }}
           >
             <CardMedia
               className={classes.media}
@@ -211,7 +226,7 @@ const AnimalCard = () => {
               <Typography
                 variant="h4"
                 component="h4"
-                style={{ color: '#34656d' }}
+                style={{ color: '#00C2CB ' }}
               >
                 Micka
               </Typography>
@@ -219,7 +234,7 @@ const AnimalCard = () => {
                 variant="h6"
                 color="textSecondary"
                 component="h6"
-                style={{ color: '#34656d' }}
+                style={{ color: '#737373' }}
               >
                 kočka, 3 roky
               </Typography>
@@ -229,38 +244,15 @@ const AnimalCard = () => {
               <Button
                 onClick={handleClick}
                 size="medium"
-                style={{ color: 'white', backgroundColor: '#34656d' }}
+                style={{ color: 'white', backgroundColor: '#737373' }}
               >
                 Více informací
               </Button>
-
-              <Snackbar
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                message="Dodám později :-)"
-                action={
-                  <React.Fragment>
-                    <Button
-                      color="secondary"
-                      size="small"
-                      onClick={handleClose}
-                    ></Button>
-                    <IconButton
-                      size="medium"
-                      aria-label="close"
-                      color="inherit"
-                      onClick={handleClose}
-                    >
-                      <CloseIcon fontSize="large" />
-                    </IconButton>
-                  </React.Fragment>
-                }
-              />
+              <IconButton
+                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+              >
+                <DeleteForeverTwoToneIcon />
+              </IconButton>
             </CardActions>
           </Paper>
         </Grid>

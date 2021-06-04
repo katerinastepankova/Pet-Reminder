@@ -26,7 +26,7 @@ const OProjektu = () => {
           alt="Bety"
         />
         <div className="personInfo">
-        <h3>O autrce</h3>
+        <h3>O autorce</h3>
         <p>
           Baví mě jásat nad každým sebemenším programovacím úspěchem a doufám,
           že to budu moci už brzy dělat celé dny. Doufám, že se naše aplikace

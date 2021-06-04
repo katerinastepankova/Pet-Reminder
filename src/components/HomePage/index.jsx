@@ -9,6 +9,7 @@ const HomePage = () => {
   return (<>
   <div className="HPBody">
   <Header/>
+  
  
   <AnimalCard/>
   <Footer/>

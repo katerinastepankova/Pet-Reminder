@@ -7,12 +7,15 @@ import OProjektu from './components/OProjektu';
 import PaswordDialog from './components/PasswordDialog';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Form from './components/Form';
 
 const App = () => {
   return <>
- 
-  <HomePage/>
-
+ <div className="app-container">
+  <Header/>
+  <Form/>
+  
+  </div>
   
  
   </>;

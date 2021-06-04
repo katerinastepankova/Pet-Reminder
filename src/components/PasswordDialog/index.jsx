@@ -24,7 +24,7 @@ const PasswordDialog = () => {
         <Button
           onClick={handleClickOpen}
           size="medium"
-          style={{ color: 'white', backgroundColor: '#34656d' }}
+          style={{ color: 'white', backgroundColor: '#737373' }}
         >
           VÍCE INFORMACÍ
         </Button>
@@ -45,13 +45,14 @@ const PasswordDialog = () => {
               label="Heslo"
               type="string"
               fullWidth
+              color='primary'
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleClose} color="#737373">
               ZPĚT
             </Button>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleClose} color="#737373">
               OK
             </Button>
           </DialogActions>

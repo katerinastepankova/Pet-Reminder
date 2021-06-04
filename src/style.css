@@ -12,8 +12,8 @@ html {
 
 
 
-.HPContainer{
-  max-width: 950px;
-  margin: 50 100px;
-  background-color: red ;
+.app-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

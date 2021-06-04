@@ -1,6 +1,10 @@
 .footer{
   text-align: center;
-  font-size: 7px;
+  font-size: 10px;
   color: #737373;
   margin-top: 50px;
+  font-weight: 600;
+}
+.linkStyle{
+  color: #E72B8E ;
 }
