@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -13,6 +13,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
+import clsx from 'clsx';
+import { useParams } from 'react-router-dom';
+import { db } from '../../db';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -25,14 +28,32 @@ const Formular = () => {
     },
   }));
   const [pet, setPet] = React.useState({
-    Type:'',
-    Password:'',
-    Owner:'',
-    Name:'',
-    ImageUrl:'',
+    Type: '',
+    Password: '',
+    Owner: '',
+    Name: '',
+    ImageUrl: '',
     Birth: new Date(),
-
   });
+
+  const {id} = useParams();
+
+  useEffect(() => {
+    console.log(id);
+    return db
+      .collection('Pet')
+      .doc(id)
+      .get()
+      .then((snapshot) => {
+        console.log('text' ,snapshot.data());
+        setPet(snapshot.data());
+      });
+  }, [db, id]);
+
+  const handleChangeEveryInput = (event, nameOfInput) => {
+    setPet({ ...pet, [nameOfInput]: event.target.value });
+    console.log(pet);
+  };
 
   const [values, setValues] = React.useState({
     password: '',
@@ -67,12 +88,18 @@ const Formular = () => {
           variant="outlined"
           size="small"
           value={pet.ImageUrl}
+          onChange={(event) => {
+            handleChangeEveryInput(event, 'ImageUrl');
+          }}
         />
         <TextField
           id="outlined-basic"
           label="Jméno zvířete"
           variant="outlined"
           value={pet.Name}
+          onChange={(event) => {
+            handleChangeEveryInput(event, 'Name');
+          }}
         />
 
         <TextField
@@ -86,6 +113,9 @@ const Formular = () => {
             shrink: true,
           }}
           value={pet.Date}
+          onChange={(event) => {
+            handleChangeEveryInput(event, 'Date');
+          }}
         />
 
         <FormControl variant="outlined" className={classes.formControl}>
@@ -96,12 +126,13 @@ const Formular = () => {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             value={pet.Type}
-            onChange={handleChange}
             label="Age"
-            
+            onChange={(event) => {
+              handleChangeEveryInput(event, 'Type');
+            }}
           >
             <MenuItem value="">
-              <em>None</em>
+              <em>Nechci vybrat</em>
             </MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
@@ -113,29 +144,38 @@ const Formular = () => {
           label="Jméno majitele"
           variant="outlined"
           value={pet.Owner}
+          onChange={(event) => {
+            handleChangeEveryInput(event, 'Owner');
+          }}
         />
 
-        <TextField
+        <FormControl
+          className={clsx(classes.margin, classes.textField)}
           variant="outlined"
-          label="Heslo"
-          id="outlined-adornment-password"
-          type={values.showPassword ? 'text' : 'password'}
-          value={pet.Password}
-          onChange={handleChangePassword('password')}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          }
-          labelWidth={70}
-        />
+        >
+          <InputLabel htmlFor="outlined-adornment-password">Heslo</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={pet.Password}
+            onChange={(event) => {
+              handleChangeEveryInput(event, 'Password');
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        </FormControl>
       </form>
     </>
   );

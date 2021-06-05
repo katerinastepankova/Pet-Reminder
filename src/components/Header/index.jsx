@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './style.css';
 
 import PropTypes from 'prop-types';
@@ -12,6 +12,11 @@ import Menu from '../Nav';
 import Search from '../Search'
 
 const Header = () => {
+
+  const [search, setSearch]= useState('');
+  const handleSearchChange = (value)=>{
+    setSearch(value)
+  }
   return (
     <>
       <div className="header">
@@ -22,8 +27,8 @@ const Header = () => {
         />
 
         <div className="navigace">
-          <Menu />
-          <Search/>
+          <Menu searchText={search}/>
+          <Search onChangeParent = {handleSearchChange} valueParent= {search} />
          
 
         </div>

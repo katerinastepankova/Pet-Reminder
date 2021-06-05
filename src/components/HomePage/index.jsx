@@ -5,9 +5,11 @@ import './style.css';
 import Header from '../Header';
 import Footer from '../Footer';
 import { db } from '../../db';
+import CreateAnimal from '../CreateAnimal';
 
-const HomePage = () => {
+const HomePage = ({ searchText }) => {
   const [pets, setPets] = useState([]);
+
   useEffect(() => {
     console.log(db);
     return db
@@ -24,15 +26,26 @@ const HomePage = () => {
           }),
         );
       });
-  }, []);
+  }, [db]);
 
-  console.log(pets);
+  console.log(searchText);
   return (
     <>
+      <CreateAnimal />
       <div className="HPBody">
-        <Header />
+        {/* <Header /> */}
 
-        {pets.map((pet)=>{return <AnimalCard key= {pet.id} pet={pet}/>})}
+        {pets
+          .filter((pet) => {
+            if (searchText === '') {
+              return false;
+            }
+
+            return pet.Owner.includes(searchText);
+          })
+          .map((pet) => {
+            return <AnimalCard key={pet.id} pet={pet} />;
+          })}
         <Footer />
       </div>
     </>

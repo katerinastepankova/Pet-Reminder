@@ -32,11 +32,9 @@ import { DialogContentText } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
 import { borders } from '@material-ui/system';
-import {differenceInYears} from 'date-fns';
+import { differenceInYears } from 'date-fns';
 
-const AnimalCard = ({pet}) => {
-
-  console.log(pet, pet.Birth.toDate());
+const CreateAnimal = () => {
   const theme = createMuiTheme({
     breakpoints: {
       values: {
@@ -65,14 +63,13 @@ const AnimalCard = ({pet}) => {
 
   const useStyles = makeStyles({
     root: {
-     
       flexGrow: 1,
       justifyContent: 'center',
     },
     media: {
       maxHeight: 200,
       backgroundColor: 'white',
-      border: '1.5px solid  #737373'
+      border: '1.5px solid  #737373',
     },
     card: {
       maxWidth: 250,
@@ -93,12 +90,10 @@ const AnimalCard = ({pet}) => {
     grid: {
       marginLeft: 0,
     },
-    actions:{
+    actions: {
       flexDirection: 'column',
       justifyContent: 'center',
-    }
-
-    
+    },
   });
 
   const classes = useStyles();
@@ -116,63 +111,53 @@ const AnimalCard = ({pet}) => {
     setOpen(false);
   };
 
-  console.log(pet.id);
   return (
-    <>
-      <Grid
-        className={classes.container}
-        container
-        direction="row"
-        spacing={2}
-        justify="center"
-      >
-        
-        <Grid item xs={12} sm={6} md={4}>
-          <Paper
-            className={classes.card}
-            style={{ backgroundColor: '#EAFFF6 ' }}
-          >
-            <CardMedia
-              className={classes.media}
-              component="img"
-              alt="Pes"
-              image="/assets/Gaspar2.png"
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography
-                variant="h4"
-                component="h4"
-                style={{ color: '#00C2CB ' }}
-              >
-               {pet.Name}
-              </Typography>
-              <Typography
-                variant="h6"
-                color="textSecondary"
-                component="h6"
-                style={{ color: '#737373 ' }}
-              >
-               <span>{pet.Type} , {differenceInYears(new Date(),pet.Birth.toDate()) }
-               </span>
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <PasswordDialog originalPassword={pet.Password} pet={pet.id}/>
-
-              <IconButton
-                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
-              >
-                <DeleteForeverTwoToneIcon />
-              </IconButton>
-            </CardActions>
-          </Paper>
-        </Grid>
-
-        
+    <Grid
+      className={classes.container}
+      container
+      direction="row"
+      spacing={2}
+      justify="center"
+    >
+      <Grid item xs={12} sm={6} md={4} className={classes.grid}>
+        <Paper className={classes.card} style={{ backgroundColor: 'white' }}>
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Paw"
+            image="/assets/paw.png"
+            title="Nový záznam"
+          />
+          <CardContent>
+            <Typography
+              variant="h5"
+              component="h5"
+              style={{ color: '#737373' }}
+            >
+              Nový záznam
+            </Typography>
+            <Typography
+              variant="h6"
+              color="textSecondary"
+              component="h6"
+              style={{ color: 'white' }}
+            ></Typography>
+          </CardContent>
+          <CardActions className={classes.actions}>
+            <IconButton
+              color="primary"
+              aria-label="Nový záznam"
+              onClick={handleClick}
+              size="medium"
+              style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+            >
+              <AddCircle size="medium" />
+            </IconButton>
+          </CardActions>
+        </Paper>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
-export default AnimalCard;
+export default CreateAnimal;

@@ -2,8 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
-
-const Search = () => {
+const Search = ({ onChangeParent, valueParent }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -15,12 +14,21 @@ const Search = () => {
   }));
 
   const classes = useStyles();
-  return ( 
-  <>
-   <form className={classes.root} noValidate autoComplete="off">
-   <TextField id="search" label="Vyhledávání" type="search" variant="outlined" />
-   </form>
-  </>
+  return (
+    <>
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField
+          value={valueParent}
+          id="search"
+          label="Vyhledávání"
+          type="search"
+          variant="outlined"
+          onChange={(event) => {
+            onChangeParent(event.target.value);
+          }}
+        />
+      </form>
+    </>
   );
 };
 

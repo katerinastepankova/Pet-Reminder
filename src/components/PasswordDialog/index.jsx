@@ -19,8 +19,11 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import {useHistory} from 'react-router-dom';
 
-const PasswordDialog = () => {
+const PasswordDialog = ({originalPassword, pet}) => {
+
+  const history = useHistory();
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -64,6 +67,11 @@ const PasswordDialog = () => {
     setOpen(false);
   };
 
+  const handlePotvrdilHeslo=(id)=>{
+    if
+    (values.password===originalPassword){
+      history.push(`/editPet/${pet}`)}}
+  
   return (
     <>
       <div>
@@ -111,7 +119,7 @@ const PasswordDialog = () => {
             <Button onClick={handleClose} color="#737373">
               ZPĚT
             </Button>
-            <Button onClick={handleClose} color="#737373">
+            <Button onClick={handlePotvrdilHeslo} color="#737373">
               OK
             </Button>
           </DialogActions>
