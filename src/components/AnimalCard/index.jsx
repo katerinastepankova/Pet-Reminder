@@ -32,8 +32,11 @@ import { DialogContentText } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
 import { borders } from '@material-ui/system';
+import {differenceInYears} from 'date-fns';
 
-const AnimalCard = () => {
+const AnimalCard = ({pet}) => {
+
+  console.log(pet, pet.Birth.toDate());
   const theme = createMuiTheme({
     breakpoints: {
       values: {
@@ -127,7 +130,7 @@ const AnimalCard = () => {
         spacing={2}
         justify="center"
       >
-        <Grid item xs={12} sm={6} md={4} className={classes.grid}>
+        {/* <Grid item xs={12} sm={6} md={4} className={classes.grid}>
           <Paper className={classes.card} style={{ backgroundColor: 'white' }} >
            
             <CardMedia
@@ -167,7 +170,7 @@ const AnimalCard = () => {
             </CardActions>
             
           </Paper>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12} sm={6} md={4}>
           <Paper
@@ -187,7 +190,7 @@ const AnimalCard = () => {
                 component="h4"
                 style={{ color: '#00C2CB ' }}
               >
-                Gaspar
+               {pet.Name}
               </Typography>
               <Typography
                 variant="h6"
@@ -195,7 +198,8 @@ const AnimalCard = () => {
                 component="h6"
                 style={{ color: '#737373 ' }}
               >
-                pes, 3 roky
+               <span>{pet.Type} , {differenceInYears(new Date(),pet.Birth.toDate()) }
+               </span>
               </Typography>
             </CardContent>
             <CardActions>
@@ -210,52 +214,7 @@ const AnimalCard = () => {
           </Paper>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={4}>
-          <Paper
-            className={classes.card}
-            style={{ backgroundColor: '#EAFFF6 ' }}
-          >
-            <CardMedia
-              className={classes.media}
-              component="img"
-              alt="Pes"
-              image="/assets/Cat.png"
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography
-                variant="h4"
-                component="h4"
-                style={{ color: '#00C2CB ' }}
-              >
-                Micka
-              </Typography>
-              <Typography
-                variant="h6"
-                color="textSecondary"
-                component="h6"
-                style={{ color: '#737373' }}
-              >
-                kočka, 3 roky
-              </Typography>
-            </CardContent>
-
-            <CardActions>
-              <Button
-                onClick={handleClick}
-                size="medium"
-                style={{ color: 'white', backgroundColor: '#737373' }}
-              >
-                Více informací
-              </Button>
-              <IconButton
-                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
-              >
-                <DeleteForeverTwoToneIcon />
-              </IconButton>
-            </CardActions>
-          </Paper>
-        </Grid>
+        
       </Grid>
     </>
   );

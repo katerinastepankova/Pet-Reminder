@@ -11,16 +11,19 @@ import Form from './components/Formular';
 import Formular from './components/Formular';
 
 const App = () => {
-  return <>
+
+  
+
+  return (
  <div className="app-container">
   <Header/>
-  
+  <HomePage/>
   <Formular/>
   
   </div>
   
  
-  </>;
+  )
 };
 
 render(<App />, document.querySelector('#app'));
