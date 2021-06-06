@@ -111,15 +111,17 @@ const CreateAnimal = () => {
     setOpen(false);
   };
 
+ 
+
   return (
-    <Grid
-      className={classes.container}
-      container
-      direction="row"
-      spacing={2}
-      justify="center"
-    >
-      <Grid item xs={12} sm={6} md={4} className={classes.grid}>
+    // <Grid
+    //   className={classes.container}
+    //   container
+    //   direction="row"
+    //   spacing={2}
+    //   justify="center"
+    // >
+    //   <Grid item xs={12} sm={6} md={4} className={classes.grid}>
         <Paper className={classes.card} style={{ backgroundColor: 'white' }}>
           <CardMedia
             className={classes.media}
@@ -155,8 +157,8 @@ const CreateAnimal = () => {
             </IconButton>
           </CardActions>
         </Paper>
-      </Grid>
-    </Grid>
+    //   </Grid>
+    // </Grid>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './style.css';
 
 import PropTypes from 'prop-types';
@@ -8,30 +8,26 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Menu from '../Nav';
-import Search from '../Search'
 
-const Header = () => {
+import Search from '../Search';
+import Nav from '../Nav';
+import { MenuList } from '@material-ui/core';
 
-  const [search, setSearch]= useState('');
-  const handleSearchChange = (value)=>{
-    setSearch(value)
-  }
+const Header = ({ searchForHeader, search }) => {
   return (
     <>
       <div className="header">
-        <img
+      <img
           className="logoHeader"
           src="/assets/LogoPetRemindersTlapkou.svg"
           alt="logo"
         />
-
         <div className="navigace">
-          <Menu searchText={search}/>
-          <Search onChangeParent = {handleSearchChange} valueParent= {search} />
+        <Nav />
+          <Search onChangeParent={searchForHeader} valueParent={search} />
          
-
         </div>
+        
       </div>
     </>
   );

@@ -24,18 +24,19 @@ import Snackbar from '@material-ui/core/Snackbar';
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
 import { AddCircle, RowingTwoTone } from '@material-ui/icons';
-import { Box, Dialog } from '@material-ui/core';
-import { DialogTitle } from '@material-ui/core';
-import { DialogContent } from '@material-ui/core';
-import { DialogActions } from '@material-ui/core';
-import { DialogContentText } from '@material-ui/core';
+import { Box } from '@material-ui/core';
+
 import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
 import { borders } from '@material-ui/system';
-import {differenceInYears} from 'date-fns';
+import { differenceInYears } from 'date-fns';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-const AnimalCard = ({pet}) => {
-
+const AnimalCard = ({ pet }) => {
   console.log(pet, pet.Birth.toDate());
   const theme = createMuiTheme({
     breakpoints: {
@@ -65,14 +66,13 @@ const AnimalCard = ({pet}) => {
 
   const useStyles = makeStyles({
     root: {
-     
       flexGrow: 1,
       justifyContent: 'center',
     },
     media: {
       maxHeight: 200,
       backgroundColor: 'white',
-      border: '1.5px solid  #737373'
+      border: '1.5px solid  #737373',
     },
     card: {
       maxWidth: 250,
@@ -93,12 +93,10 @@ const AnimalCard = ({pet}) => {
     grid: {
       marginLeft: 0,
     },
-    actions:{
+    actions: {
       flexDirection: 'column',
       justifyContent: 'center',
-    }
-
-    
+    },
   });
 
   const classes = useStyles();
@@ -112,14 +110,23 @@ const AnimalCard = ({pet}) => {
     if (reason === 'clickaway') {
       return;
     }
-
+    
     setOpen(false);
   };
 
-  console.log(pet.id);
+  const [openAlert, setOpenAlert] = React.useState(false);
+
+  const handleClickOpenAlert = () => {
+    setOpenAlert(true);
+  };
+
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
+  };
+  // console.log(pet.id);
   return (
     <>
-      <Grid
+      {/* <Grid
         className={classes.container}
         container
         direction="row"
@@ -127,50 +134,72 @@ const AnimalCard = ({pet}) => {
         justify="center"
       >
         
-        <Grid item xs={12} sm={6} md={4}>
-          <Paper
-            className={classes.card}
-            style={{ backgroundColor: '#EAFFF6 ' }}
+        <Grid item xs={12} sm={6} md={4}> */}
+      <Paper className={classes.card} style={{ backgroundColor: '#EAFFF6 ' }}>
+        <CardMedia
+          className={classes.media}
+          component="img"
+          alt="Pes"
+          image="/assets/Gaspar2.png"
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <Typography variant="h4" component="h4" style={{ color: '#00C2CB ' }}>
+            {pet.Name}
+          </Typography>
+          <Typography
+            variant="h6"
+            color="textSecondary"
+            component="h6"
+            style={{ color: '#737373 ' }}
           >
-            <CardMedia
-              className={classes.media}
-              component="img"
-              alt="Pes"
-              image="/assets/Gaspar2.png"
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography
-                variant="h4"
-                component="h4"
-                style={{ color: '#00C2CB ' }}
-              >
-               {pet.Name}
-              </Typography>
-              <Typography
-                variant="h6"
-                color="textSecondary"
-                component="h6"
-                style={{ color: '#737373 ' }}
-              >
-               <span>{pet.Type} , {differenceInYears(new Date(),pet.Birth.toDate()) }
-               </span>
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <PasswordDialog originalPassword={pet.Password} pet={pet.id}/>
+            <span>
+              {pet.Type} , {differenceInYears(new Date(), pet.Birth.toDate())}
+            </span>
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <PasswordDialog originalPassword={pet.Password} pet={pet.id} />
 
-              <IconButton
-                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
-              >
-                <DeleteForeverTwoToneIcon />
-              </IconButton>
-            </CardActions>
-          </Paper>
-        </Grid>
+          <div>
+            <IconButton
+            onClick={handleClick}
+              style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+            >
+              <DeleteForeverTwoToneIcon />
+              
+            </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"Opravdu chcete smazat tento záznam?"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                 Pokud ne,  stiskněte tlačítko ZPĚT
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  ZPĚT
+                </Button>
+                <Button onClick={handleClose} color="primary" autoFocus>
+                  OK
+                </Button>
+              </DialogActions>
+            </Dialog>
+            
+          </div>
+        </CardActions>
+      </Paper>
+      {/* </Grid>
 
         
-      </Grid>
+      </Grid> */}
     </>
   );
 };

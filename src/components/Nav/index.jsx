@@ -14,7 +14,7 @@ import OProjektu from '../OProjektu';
 import HomePage from '../HomePage';
 import Formular from '../Formular';
 
-const Nav = ({searchText}) => {
+const Nav = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   console.log('Nav');
@@ -28,7 +28,7 @@ const Nav = ({searchText}) => {
   };
   return (
     <>
-      <Router>
+      
         <div className="menu-container">
           <Button
             aria-controls="simple-menu"
@@ -55,23 +55,9 @@ const Nav = ({searchText}) => {
               <MenuItem onClick={handleClose}>Nový záznam</MenuItem>
             </NavLink>
           </Menu>
-          <Switch>
-            <Route exact path="/">
-              <HomePage searchText={searchText} />
-            </Route>
-            <Route exact path="/oprojektu">
-              <OProjektu />
-            </Route>
-            <Route exact path="/create">
-              <Formular />
-            </Route>
-            <Route exact path="/editPet/:id">
-              <Formular />
-            </Route>
-
-          </Switch>
+          
         </div>
-      </Router>
+     
     </>
   );
 };
