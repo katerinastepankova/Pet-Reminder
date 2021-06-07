@@ -48,6 +48,10 @@ const Formular = () => {
     textField: {
       marginLeft: theme.spacing(8),
     },
+    petname: {
+      fontSize: '25px',
+      color: 'red',
+    }
   }));
 
   const [pet, setPet] = React.useState({
@@ -55,7 +59,7 @@ const Formular = () => {
     Password: '',
     Owner: '',
     Name: '',
-    ImageUrl: '',
+    // ImageUrl: '',
     Birth: '',
     Activities: [{ name: '', dates: ['2021-06-07'] }],
   });
@@ -207,7 +211,7 @@ const Formular = () => {
         </label> */}
       </div>
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField
+        {/* <TextField
           id="outlined-basic"
           label="http "
           variant="outlined"
@@ -216,8 +220,9 @@ const Formular = () => {
           onChange={(event) => {
             handleChangeEveryInput(event, 'ImageUrl');
           }}
-        />
+        /> */}
         <TextField
+       className={classes.petname}
           id="outlined-basic"
           label="Jméno zvířete"
           variant="outlined"

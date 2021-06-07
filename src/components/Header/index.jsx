@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 
 import PropTypes from 'prop-types';
@@ -12,24 +12,34 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import Search from '../Search';
 import Nav from '../Nav';
 import { MenuList } from '@material-ui/core';
+import { useLocation } from 'react-router-dom';
 
 const Header = ({ searchForHeader, search }) => {
+  const [currentPath, setCurrentPath] = useState(null);
+  const location = useLocation();
+  useEffect(() => {
+    
+    setCurrentPath(location.pathname);
+  }, [location]);
+
   return (
     <>
       <div className="header">
-      <img
+        <img
           className="logoHeader"
           src="/assets/LogoPetRemindersTlapkou.svg"
           alt="logo"
         />
         <div className="navigace">
-        <Nav />
-    
-          <Search  onChangeParent={searchForHeader} valueParent={search} />
-          <SearchOutlinedIcon/>
-         
+          <Nav />
+          
+          {currentPath === '/' && (
+            <>
+              <Search onChangeParent={searchForHeader} valueParent={search} />
+              <SearchOutlinedIcon />
+            </>
+          )}
         </div>
-        
       </div>
     </>
   );
