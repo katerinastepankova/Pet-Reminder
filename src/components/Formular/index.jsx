@@ -24,6 +24,10 @@ import { AddCircle, RowingTwoTone } from '@material-ui/icons';
 import CardActions from '@material-ui/core/CardActions';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
+import Fab from '@material-ui/core/Fab';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
+import Link from '@material-ui/core/Link';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -169,6 +173,10 @@ const Formular = () => {
 
   console.log(pet);
 
+  const formatDate = (date) => (date.seconds===undefined)
+   ? date 
+   : date.toDate();
+
   return (
     <>
       <h2>Karta zvířete</h2>
@@ -217,22 +225,25 @@ const Formular = () => {
           }}
         />
 
+
         <TextField
-          id="datetime-local"
+          id="date"
           variant="outlined"
           label="Datum narození"
-          type="datetime-local"
+          type="date"
           /*  className={classes.textField} */
           InputLabelProps={{
             shrink: true,
           }}
           value={
-            pet.Birth //
+            formatDate(pet.Birth)  
           }
+          // pet.Birth.toDate()
           onChange={(event) => {
             handleChangeEveryInput(event, 'Birth');
           }}
         />
+
 
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">
@@ -290,7 +301,7 @@ const Formular = () => {
           />
         </FormControl>
 
-        <h5>Evidované úkony:</h5>
+        <h3 style={{color:'#00C2CB'}}>Evidované úkony:</h3>
 
         {pet.Activities.map((activity, index) => {
           return (
@@ -306,14 +317,15 @@ const Formular = () => {
                     backgroundColor: '#00C2CB',
                   }}
                 >
-                  <AddCircle size="large" />
+                  <AddCircle style={{fontSize: 50}} />
                 </IconButton>
               </CardActions>
+
+              
               <TextField
-               style={{
-               
-                backgroundColor: '#EAFFF6 ',
-              }}
+                style={{
+                  backgroundColor: '#EAFFF6 ',
+                }}
                 id="outlined-basic"
                 label="Přidej úkon - např. vakcinace"
                 variant="outlined"
@@ -330,9 +342,9 @@ const Formular = () => {
                   <>
                     <div className="activity-item">
                       <TextField
-                        id="datetime-local"
+                        id="date"
                         label="Vyber datum"
-                        type="datetime-local"
+                        type="date"
                         value={pet.Activities[index].dates[i]}
                         className={classes.textField}
                         InputLabelProps={{
@@ -342,6 +354,9 @@ const Formular = () => {
                           handleChangeDateOfActivity;
                         }}
                       />
+                      <IconButton aria-label="delete">
+                        <HighlightOffIcon />
+                      </IconButton>
 
                       {activity.dates.length === i + 1 && ( //tlačítko přidej se ukazuje pouze u poseldního pickeru
                         <CardActions className={classes.actions}>
@@ -405,7 +420,14 @@ const Formular = () => {
             }
           />
         </CardActions>
+       
       </form>
+      <Fab  aria-label="add">
+      <Link href="#"  color="inherit">
+        <ArrowUpwardTwoToneIcon 
+       
+        /> </Link>
+      </Fab>
     </>
   );
 };

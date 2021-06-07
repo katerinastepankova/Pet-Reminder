@@ -19,10 +19,9 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-const PasswordDialog = ({originalPassword, pet}) => {
-
+const PasswordDialog = ({ originalPassword, pet }) => {
   const history = useHistory();
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,7 +40,6 @@ const PasswordDialog = ({originalPassword, pet}) => {
   }));
   const classes = useStyles();
   const [values, setValues] = React.useState({
-   
     password: '',
     showPassword: false,
   });
@@ -67,11 +65,12 @@ const PasswordDialog = ({originalPassword, pet}) => {
     setOpen(false);
   };
 
-  const handlePotvrdilHeslo=(id)=>{
-    if
-    (values.password===originalPassword){
-      history.push(`/editPet/${pet}`)}}
-  
+  const handlePotvrdilHeslo = (id) => {
+    if (values.password === originalPassword) {
+      history.push(`/editPet/${pet}`);
+    }
+  };
+
   return (
     <>
       <div>
@@ -88,40 +87,50 @@ const PasswordDialog = ({originalPassword, pet}) => {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">PŘIHLÁŠENÍ</DialogTitle>
-          <DialogContent>
+          <DialogContent >
             <DialogContentText>
               Prosím zadej své heslo a potvrď tlačítkem OK
             </DialogContentText>
-           <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Heslo</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-            labelWidth={70}
-          />
-        </FormControl>
+            <FormControl
+           
+              className={clsx(classes.margin, classes.textField)}
+              variant="outlined"
+            >
+              <InputLabel htmlFor="outlined-adornment-password">
+                Heslo
+              </InputLabel>
+              <OutlinedInput 
+                id="outlined-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.password}
+                onChange={handleChange('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                labelWidth={70}
+              />
+            </FormControl>
           </DialogContent>
-          <DialogActions>
+
+          <DialogActions >
             <Button onClick={handleClose} color="#737373">
               ZPĚT
             </Button>
-            <Button onClick={handlePotvrdilHeslo} color="#737373">
+        
+            <Button  onClick={handlePotvrdilHeslo} color="#737373"
+             >
               OK
             </Button>
+          
           </DialogActions>
         </Dialog>
       </div>

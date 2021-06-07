@@ -37,7 +37,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const AnimalCard = ({ pet }) => {
-  console.log(pet, pet.Birth);
+  
 
   const theme = createMuiTheme({
     breakpoints: {
@@ -107,6 +107,12 @@ const AnimalCard = ({ pet }) => {
     setOpen(true);
   };
 
+  const formatDate = (date) => (date.seconds===undefined)
+   ? date 
+   : date.toDate();
+
+   console.log(pet, formatDate(pet.Birth));
+
   // useEffect(() => {
 
   //     return db
@@ -156,8 +162,11 @@ const AnimalCard = ({ pet }) => {
             component="h6"
             style={{ color: '#737373 ' }}
           >
+            {/* <span>
+              {pet.Type} , {differenceInYears(Number(new Date()), Number(formatDate(pet.Birth)))}
+            </span> */}
             <span>
-              {pet.Type} , {differenceInYears(new Date(), pet.Birth)}
+              {pet.Type} 
             </span>
           </Typography>
         </CardContent>
