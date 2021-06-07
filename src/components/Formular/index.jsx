@@ -164,7 +164,6 @@ const Formular = () => {
         const newDatesArray = activity.dates.map((date, i) => {
           console.log(i, indexOfDate);
           if (i === indexOfDate) {
-           
             return event.target.value;
           }
           return date;
@@ -186,7 +185,7 @@ const Formular = () => {
 
       <div className="foto-zvirete">?</div>
       <div>
-        <label className={classes.input} htmlFor="contained-button-file">
+        <label className={classes.input} htmlFor="outlined-button-file">
           <Button variant="contained" color="primary" component="span">
             Upload
           </Button>
@@ -319,20 +318,25 @@ const Formular = () => {
                   <AddCircle style={{ fontSize: 50 }} />
                 </IconButton>
               </CardActions>
-
-              <TextField
-                style={{
-                  backgroundColor: '#EAFFF6 ',
-                }}
-                id="outlined-basic"
-                label="Přidej úkon - např. vakcinace"
-                variant="outlined"
-                size="small"
-                value={pet.Activities[index].name}
-                onChange={(event) => {
-                  handleChangeNameOfActivity(event, index);
-                }}
-              />
+              <div>
+                <TextField
+                  style={{
+                    backgroundColor: '#EAFFF6 ',
+                    minWidth: 200,
+                  }}
+                  id="outlined-basic"
+                  label="Přidej úkon"
+                  variant="outlined"
+                  size="small"
+                  value={pet.Activities[index].name}
+                  onChange={(event) => {
+                    handleChangeNameOfActivity(event, index);
+                  }}
+                />
+                <IconButton aria-label="delete">
+                  <HighlightOffIcon />
+                </IconButton>
+              </div>
 
               {activity.dates.map((date, i) => {
                 //ukazuju ty Datepickery
@@ -348,7 +352,7 @@ const Formular = () => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        style={{minWidth: 135}}
+                        style={{ minWidth: 135 }}
                         onChange={(event) => {
                           handleChangeDateOfActivity(event, index, i);
                         }}

@@ -37,8 +37,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const AnimalCard = ({ pet }) => {
-  
-
   const theme = createMuiTheme({
     breakpoints: {
       values: {
@@ -107,23 +105,10 @@ const AnimalCard = ({ pet }) => {
     setOpen(true);
   };
 
-  const formatDate = (date) => (date.seconds===undefined)
-   ? date 
-   : date.toDate();
+  const formatDate = (date) =>
+    date.seconds === undefined ? date : date.toDate();
 
-   console.log(pet, formatDate(pet.Birth));
-
-  // useEffect(() => {
-
-  //     return db
-  //       .collection('Pet')
-  //       .doc(pet)
-  //       .get()
-  //       .then((snapshot) => {
-  //         setPet(snapshot.data());
-  //       });
-  //   },
-  //  [db]);
+  console.log(pet, formatDate(pet.Birth));
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -131,6 +116,15 @@ const AnimalCard = ({ pet }) => {
     }
     // db.collection('Pet').pet.delete();
     setOpen(false);
+  };
+
+  const handleCloseAndDelete = (reason, event) => {
+    if (reason === 'clickaway') {
+      return;
+    } else {
+      db.collection('Pet').doc(pet.id).delete();
+      setOpen(false);
+    }
   };
 
   return (
@@ -165,9 +159,7 @@ const AnimalCard = ({ pet }) => {
             {/* <span>
               {pet.Type} , {differenceInYears(Number(new Date()), Number(formatDate(pet.Birth)))}
             </span> */}
-            <span>
-              {pet.Type} 
-            </span>
+            <span>{pet.Type}</span>
           </Typography>
         </CardContent>
         <CardActions>
@@ -198,7 +190,7 @@ const AnimalCard = ({ pet }) => {
                 <Button onClick={handleClose} color="primary">
                   ZPĚT
                 </Button>
-                <Button onClick={handleClose} color="primary" autoFocus>
+                <Button onClick={handleCloseAndDelete} color="primary" autoFocus>
                   OK
                 </Button>
               </DialogActions>
