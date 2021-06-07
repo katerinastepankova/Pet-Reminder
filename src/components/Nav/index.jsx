@@ -34,6 +34,7 @@ const Nav = () => {
             aria-controls="simple-menu"
             aria-haspopup="true"
             onClick={handleClick}
+            style={{ color: '#00C2CB ' , fontSize: '25px'}}
           >
             Menu
           </Button>
@@ -43,6 +44,7 @@ const Nav = () => {
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleClose}
+          
 
           >
             <NavLink exact to="/" activeClassName="selected">

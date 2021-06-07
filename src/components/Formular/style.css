@@ -5,10 +5,15 @@
   font-size: 80px;
   color: #737373;
   text-align: center;
+  
 }
 .activity-item{
   display: flex;
+
 }
 .activity-add{
   display:flex;
+}
+form{
+  background-color: white;
 }

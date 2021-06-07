@@ -1,3 +1,10 @@
+/* #00C2CB – zelená
+#737373 – šedá
+#FAFAE7 – žlutá
+#EAFFF6 – světle zelená
+#E72B8E - růžová */
+
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 * {
@@ -16,4 +23,5 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #FAFAE7;
 }

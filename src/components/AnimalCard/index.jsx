@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,7 +25,7 @@ import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
 import { AddCircle, RowingTwoTone } from '@material-ui/icons';
 import { Box } from '@material-ui/core';
-
+import { db } from '../../db';
 import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
 import { borders } from '@material-ui/system';
@@ -37,7 +37,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const AnimalCard = ({ pet }) => {
-  console.log(pet, pet.Birth.toDate());
+  console.log(pet, pet.Birth);
+
   const theme = createMuiTheme({
     breakpoints: {
       values: {
@@ -82,7 +83,7 @@ const AnimalCard = ({ pet }) => {
       color: theme.palette.text.secondary,
       alignItems: 'center',
       flexDirection: 'column',
-      border: 2,
+      margin: theme.spacing(1),
     },
     container: {
       flexDirection: 'column',
@@ -106,24 +107,26 @@ const AnimalCard = ({ pet }) => {
     setOpen(true);
   };
 
+  // useEffect(() => {
+
+  //     return db
+  //       .collection('Pet')
+  //       .doc(pet)
+  //       .get()
+  //       .then((snapshot) => {
+  //         setPet(snapshot.data());
+  //       });
+  //   },
+  //  [db]);
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    
+    // db.collection('Pet').pet.delete();
     setOpen(false);
   };
 
-  const [openAlert, setOpenAlert] = React.useState(false);
-
-  const handleClickOpenAlert = () => {
-    setOpenAlert(true);
-  };
-
-  const handleCloseAlert = () => {
-    setOpenAlert(false);
-  };
-  // console.log(pet.id);
   return (
     <>
       {/* <Grid
@@ -154,7 +157,7 @@ const AnimalCard = ({ pet }) => {
             style={{ color: '#737373 ' }}
           >
             <span>
-              {pet.Type} , {differenceInYears(new Date(), pet.Birth.toDate())}
+              {pet.Type} , {differenceInYears(new Date(), pet.Birth)}
             </span>
           </Typography>
         </CardContent>
@@ -163,11 +166,10 @@ const AnimalCard = ({ pet }) => {
 
           <div>
             <IconButton
-            onClick={handleClick}
+              onClick={handleClick}
               style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
             >
               <DeleteForeverTwoToneIcon />
-              
             </IconButton>
             <Dialog
               open={open}
@@ -176,11 +178,11 @@ const AnimalCard = ({ pet }) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {"Opravdu chcete smazat tento záznam?"}
+                {'Opravdu chcete smazat tento záznam?'}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                 Pokud ne,  stiskněte tlačítko ZPĚT
+                  Pokud ne, stiskněte tlačítko ZPĚT
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
@@ -192,7 +194,6 @@ const AnimalCard = ({ pet }) => {
                 </Button>
               </DialogActions>
             </Dialog>
-            
           </div>
         </CardActions>
       </Paper>

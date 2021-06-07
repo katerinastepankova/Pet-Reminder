@@ -8,7 +8,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import Search from '../Search';
 import Nav from '../Nav';
 import { MenuList } from '@material-ui/core';
@@ -24,7 +24,9 @@ const Header = ({ searchForHeader, search }) => {
         />
         <div className="navigace">
         <Nav />
-          <Search onChangeParent={searchForHeader} valueParent={search} />
+        
+          <Search  onChangeParent={searchForHeader} valueParent={search} />
+          <SearchOutlinedIcon/>
          
         </div>
         

@@ -41,7 +41,11 @@ const Formular = () => {
       flexDirection: 'column',
       justifyContent: 'center',
     },
+    textField: {
+      marginLeft: theme.spacing(8),
+    },
   }));
+
   const [pet, setPet] = React.useState({
     Type: '',
     Password: '',
@@ -214,16 +218,16 @@ const Formular = () => {
         />
 
         <TextField
-          id="date"
+          id="datetime-local"
           variant="outlined"
           label="Datum narození"
-          type="date"
-          className={classes.textField}
+          type="datetime-local"
+          /*  className={classes.textField} */
           InputLabelProps={{
             shrink: true,
           }}
           value={
-            pet.Birth === '' ? pet.Birth : pet.Birth.toDate().toDateString()
+            pet.Birth //
           }
           onChange={(event) => {
             handleChangeEveryInput(event, 'Birth');
@@ -243,8 +247,8 @@ const Formular = () => {
               handleChangeEveryInput(event, 'Type');
             }}
           >
-            <MenuItem value="">
-              <em>Nechci vybrat</em>
+            <MenuItem value="Nezvoleno">
+              <em>Nezvoleno</em>
             </MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
@@ -261,10 +265,7 @@ const Formular = () => {
           }}
         />
 
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="outlined"
-        >
+        <FormControl className={clsx(classes.margin)} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Heslo</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -294,17 +295,6 @@ const Formular = () => {
         {pet.Activities.map((activity, index) => {
           return (
             <>
-              <TextField
-                id="outlined-basic"
-                label="Přidej úkon"
-                variant="outlined"
-                size="small"
-                value={pet.Activities[index].name}
-                onChange={(event) => {
-                  handleChangeNameOfActivity(event, index);
-                }}
-              />
-
               <CardActions className={classes.actions}>
                 <IconButton
                   color="primary"
@@ -316,9 +306,23 @@ const Formular = () => {
                     backgroundColor: '#00C2CB',
                   }}
                 >
-                  <AddCircle size="small" />
+                  <AddCircle size="large" />
                 </IconButton>
               </CardActions>
+              <TextField
+               style={{
+               
+                backgroundColor: '#EAFFF6 ',
+              }}
+                id="outlined-basic"
+                label="Přidej úkon - např. vakcinace"
+                variant="outlined"
+                size="small"
+                value={pet.Activities[index].name}
+                onChange={(event) => {
+                  handleChangeNameOfActivity(event, index);
+                }}
+              />
 
               {activity.dates.map((date, i) => {
                 //ukazuju ty Datepickery
@@ -326,9 +330,9 @@ const Formular = () => {
                   <>
                     <div className="activity-item">
                       <TextField
-                        id="date"
+                        id="datetime-local"
                         label="Vyber datum"
-                        type="date"
+                        type="datetime-local"
                         value={pet.Activities[index].dates[i]}
                         className={classes.textField}
                         InputLabelProps={{

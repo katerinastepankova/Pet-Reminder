@@ -16,7 +16,7 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 import { createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -33,6 +33,13 @@ import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
 import { borders } from '@material-ui/system';
 import { differenceInYears } from 'date-fns';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+  Redirect,
+} from 'react-router-dom';
 
 const CreateAnimal = () => {
   const theme = createMuiTheme({
@@ -59,6 +66,7 @@ const CreateAnimal = () => {
         contrastText: '#000',
       },
     },
+   
   });
 
   const useStyles = makeStyles({
@@ -79,7 +87,7 @@ const CreateAnimal = () => {
       color: theme.palette.text.secondary,
       alignItems: 'center',
       flexDirection: 'column',
-      border: 2,
+      margin: theme.spacing(1),
     },
     container: {
       flexDirection: 'column',
@@ -146,6 +154,7 @@ const CreateAnimal = () => {
             ></Typography>
           </CardContent>
           <CardActions className={classes.actions}>
+          <NavLink exact to="/create" activeClassName="selected">
             <IconButton
               color="primary"
               aria-label="Nový záznam"
@@ -155,6 +164,7 @@ const CreateAnimal = () => {
             >
               <AddCircle size="medium" />
             </IconButton>
+            </NavLink>
           </CardActions>
         </Paper>
     //   </Grid>

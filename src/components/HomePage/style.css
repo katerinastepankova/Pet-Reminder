@@ -1,8 +1,9 @@
 .HPBody{
   background-color: #FAFAE7;
-  min-height: 700px ;
+  min-height: 600px ;
   display:flex;
   flex-direction: column;
   align-items: center;
+  margin: 10px 3px;
 }
 

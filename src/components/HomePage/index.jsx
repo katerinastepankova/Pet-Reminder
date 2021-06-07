@@ -31,12 +31,7 @@ const HomePage = ({ searchText }) => {
   console.log(searchText);
   return (
     <>
-     <div className="HPBody">
-      
-      <CreateAnimal />
-     
-  
-
+      <div className="HPBody">
         {pets
           .filter((pet) => {
             if (searchText === '') {
@@ -48,7 +43,8 @@ const HomePage = ({ searchText }) => {
           .map((pet) => {
             return <AnimalCard key={pet.id} pet={pet} />;
           })}
-       
+
+        <CreateAnimal />
       </div>
     </>
   );
