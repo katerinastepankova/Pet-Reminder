@@ -57,7 +57,7 @@ const Formular = () => {
     Name: '',
     ImageUrl: '',
     Birth: '',
-    Activities: [],
+    Activities: [{ name: '', dates: ['2021-06-07'] }],
   });
 
   const { id } = useParams();
@@ -158,24 +158,27 @@ const Formular = () => {
   };
 
   const handleChangeDateOfActivity = (event, indexOfActivity, indexOfDate) => {
+    console.log(event.target.value);
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
-        const newdatesArray = activity.dates.map((date, i) => {
+        const newDatesArray = activity.dates.map((date, i) => {
+          console.log(i, indexOfDate);
           if (i === indexOfDate) {
+           
             return event.target.value;
-          } else return date;
+          }
+          return date;
         });
+        console.log(newDatesArray);
+        return { ...activity, dates: newDatesArray }; //mění exitující datum v petovi
       }
-      return { ...activity, dates: newdatesArray }; //mění exitující datum v petovi
+      return activity;
     });
     setPet({ ...pet, Activities: newActivitiesArray });
   };
 
-  console.log(pet);
-
-  const formatDate = (date) => (date.seconds===undefined)
-   ? date 
-   : date.toDate();
+  const formatDate = (date) =>
+    date.seconds === undefined ? date : date.toDate();
 
   return (
     <>
@@ -225,7 +228,6 @@ const Formular = () => {
           }}
         />
 
-
         <TextField
           id="date"
           variant="outlined"
@@ -235,15 +237,12 @@ const Formular = () => {
           InputLabelProps={{
             shrink: true,
           }}
-          value={
-            formatDate(pet.Birth)  
-          }
+          value={formatDate(pet.Birth)}
           // pet.Birth.toDate()
           onChange={(event) => {
             handleChangeEveryInput(event, 'Birth');
           }}
         />
-
 
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">
@@ -301,7 +300,7 @@ const Formular = () => {
           />
         </FormControl>
 
-        <h3 style={{color:'#00C2CB'}}>Evidované úkony:</h3>
+        <h3 style={{ color: '#00C2CB' }}>Evidované úkony:</h3>
 
         {pet.Activities.map((activity, index) => {
           return (
@@ -317,11 +316,10 @@ const Formular = () => {
                     backgroundColor: '#00C2CB',
                   }}
                 >
-                  <AddCircle style={{fontSize: 50}} />
+                  <AddCircle style={{ fontSize: 50 }} />
                 </IconButton>
               </CardActions>
 
-              
               <TextField
                 style={{
                   backgroundColor: '#EAFFF6 ',
@@ -345,13 +343,14 @@ const Formular = () => {
                         id="date"
                         label="Vyber datum"
                         type="date"
-                        value={pet.Activities[index].dates[i]}
+                        value={formatDate(pet.Activities[index].dates[i])}
                         className={classes.textField}
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        onChange={() => {
-                          handleChangeDateOfActivity;
+                        style={{minWidth: 135}}
+                        onChange={(event) => {
+                          handleChangeDateOfActivity(event, index, i);
                         }}
                       />
                       <IconButton aria-label="delete">
@@ -420,13 +419,11 @@ const Formular = () => {
             }
           />
         </CardActions>
-       
       </form>
-      <Fab  aria-label="add">
-      <Link href="#"  color="inherit">
-        <ArrowUpwardTwoToneIcon 
-       
-        /> </Link>
+      <Fab aria-label="add">
+        <Link href="#" color="inherit">
+          <ArrowUpwardTwoToneIcon />{' '}
+        </Link>
       </Fab>
     </>
   );

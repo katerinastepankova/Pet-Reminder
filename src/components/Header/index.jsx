@@ -24,7 +24,7 @@ const Header = ({ searchForHeader, search }) => {
         />
         <div className="navigace">
         <Nav />
-        
+    
           <Search  onChangeParent={searchForHeader} valueParent={search} />
           <SearchOutlinedIcon/>
          
