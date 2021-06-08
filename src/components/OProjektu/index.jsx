@@ -2,6 +2,9 @@ import React from 'react';
 import './style.css';
 import { Paper } from '@material-ui/core';
 import { Avatar } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
+import Link from '@material-ui/core/Link';
+import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 
 const OProjektu = () => {
   return (
@@ -25,7 +28,7 @@ const OProjektu = () => {
         Do budoucna bude přidána možnost nastavit u každé aktivity také upozornění přes Google kalendář nebo emailem, a také vytvoření uživatelských profilů jednotlivých majitelů - tím odpadne nutnost zadávat heslo při každém otevření jednotlivé kartičky zvířete. 
         <br />
         <br />
-        Tato aplikace byla vytvořena jako závěrečný projekt tříměsíční Digitální
+        Tato aplikace byla vytvořena jako závěrečný projekt čtyřměsíční Digitální
         akademie WEB pořádané společností Czechitas, z.s. Jedná se o beta verzi. Budu ráda, pokud mě budete kontaktovat v případě jakýchkoli návrhů na vylepšení nebo když se někde objeví chyba.
       </p>
 
@@ -41,11 +44,16 @@ const OProjektu = () => {
             Baví mě jásat nad každým sebemenším programovacím úspěchem a těším se,
             že to budu moci už brzy dělat celé dny :-). Doufám, že se tato aplikace
             stane pro své uživatele "user friendly až addictive", a vzhledem k
-            vyššímu počtu vlastních zvířat oceňuji především na praktický
+            vyššímu počtu vlastních zvířat oceňuji především očekávaný praktický
             přínos této aplikace.
           </p>
         </div>
       </div>
+      <Fab aria-label="add">
+        <Link href="#" color="inherit">
+          <ArrowUpwardTwoToneIcon />{' '}
+        </Link>
+      </Fab>
     </>
   );
 };

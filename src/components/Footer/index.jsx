@@ -8,7 +8,7 @@ const Footer =()=>{
   return(
     <>
   <div className="footer">
-  <p>Tato aplikace byla vyrobena v rámci závěrečného projektu Digitální akademie Web společnosti <Link href="https://www.czechitas.cz/cs/co-delame/digitalni-akademie">
+  <p>Tato aplikace byla vyrobena v rámci závěrečného projektu Digitální akademie Web společnosti <Link href="https://www.czechitas.cz/kurzy/digitalni-akademie-web">
     Czechitas, z.s.
   </Link></p>
   </div>
