@@ -51,7 +51,9 @@ const Formular = () => {
     petname: {
       fontSize: '25px',
       color: 'red',
-    }
+      backgroundColor: 'white',
+      marginBottom: theme.spacing(2),
+    },
   }));
 
   const [pet, setPet] = React.useState({
@@ -67,14 +69,14 @@ const Formular = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
+    /*   console.log(id); */
     if (id !== undefined) {
       return db
         .collection('Pet')
         .doc(id)
         .get()
         .then((snapshot) => {
-          console.log('text', snapshot.data());
+          /*  console.log('text', snapshot.data()); */
           setPet(snapshot.data());
         });
     }
@@ -92,9 +94,9 @@ const Formular = () => {
   };
 
   const handleChangeEveryInput = (event, nameOfInput) => {
-    console.log(event.target.value);
+    /*   console.log(event.target.value); */
     setPet({ ...pet, [nameOfInput]: event.target.value });
-    console.log(pet);
+    /* console.log(pet); */
   };
 
   const [values, setValues] = React.useState({
@@ -151,6 +153,15 @@ const Formular = () => {
     setPet({ ...pet, Activities: newArray });
   };
 
+  const deleteActivityFromActivities = (index) => {
+    console.log('klik');
+    const activityToRemove = pet.Activities[index];
+
+    const newArray = pet.Activities.filter((item) => item !== activityToRemove);
+
+    setPet({ ...pet, Activities: newArray });
+  };
+
   const handleChangeNameOfActivity = (event, indexOfActivity) => {
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
@@ -162,17 +173,17 @@ const Formular = () => {
   };
 
   const handleChangeDateOfActivity = (event, indexOfActivity, indexOfDate) => {
-    console.log(event.target.value);
+    /*  console.log(event.target.value); */
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
         const newDatesArray = activity.dates.map((date, i) => {
-          console.log(i, indexOfDate);
+          /*  console.log(i, indexOfDate); */
           if (i === indexOfDate) {
             return event.target.value;
           }
           return date;
         });
-        console.log(newDatesArray);
+        /*  console.log(newDatesArray); */
         return { ...activity, dates: newDatesArray }; //mění exitující datum v petovi
       }
       return activity;
@@ -180,12 +191,28 @@ const Formular = () => {
     setPet({ ...pet, Activities: newActivitiesArray });
   };
 
+  const deleteDateFromActivities = (event, indexOfActivity, indexOfDate) => {
+    // const currentArray = pet.Activities;
+    // const removeDate=pet.Activities[indexOfActivity].dates[indexOfDate];
+    // console.log(removeDate);
+  };
+
   const formatDate = (date) =>
     date.seconds === undefined ? date : date.toDate();
 
   return (
     <>
-      <h2>Karta zvířete</h2>
+      {/* <h2>Karta zvířete</h2> */}
+      <TextField
+        className={classes.petname}
+        id="outlined-basic"
+        label="Jméno zvířete"
+        variant="outlined"
+        value={pet.Name}
+        onChange={(event) => {
+          handleChangeEveryInput(event, 'Name');
+        }}
+      />
 
       <div className="foto-zvirete">?</div>
       <div>
@@ -221,16 +248,6 @@ const Formular = () => {
             handleChangeEveryInput(event, 'ImageUrl');
           }}
         /> */}
-        <TextField
-       className={classes.petname}
-          id="outlined-basic"
-          label="Jméno zvířete"
-          variant="outlined"
-          value={pet.Name}
-          onChange={(event) => {
-            handleChangeEveryInput(event, 'Name');
-          }}
-        />
 
         <TextField
           id="date"
@@ -330,7 +347,7 @@ const Formular = () => {
                     minWidth: 200,
                   }}
                   id="outlined-basic"
-                  label="Přidej úkon"
+                  label="Název úkonu"
                   variant="outlined"
                   size="small"
                   value={pet.Activities[index].name}
@@ -338,7 +355,12 @@ const Formular = () => {
                     handleChangeNameOfActivity(event, index);
                   }}
                 />
-                <IconButton aria-label="delete">
+                <IconButton
+                  aria-label="delete"
+                  onClick={() => {
+                    deleteActivityFromActivities(index);
+                  }}
+                >
                   <HighlightOffIcon />
                 </IconButton>
               </div>
@@ -362,7 +384,10 @@ const Formular = () => {
                           handleChangeDateOfActivity(event, index, i);
                         }}
                       />
-                      <IconButton aria-label="delete">
+                      <IconButton
+                        aria-label="delete"
+                        onClick={deleteDateFromActivities}
+                      >
                         <HighlightOffIcon />
                       </IconButton>
 
