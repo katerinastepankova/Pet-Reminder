@@ -20,7 +20,7 @@ const Search = ({ onChangeParent, valueParent }) => {
         <TextField
           value={valueParent}
           id="search"
-          label="Jméno majitele"
+          label="Přihlašovací jméno"
           type="search"
           variant="outlined"
           onChange={(event) => {

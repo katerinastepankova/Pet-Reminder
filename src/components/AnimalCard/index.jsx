@@ -35,6 +35,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const AnimalCard = ({ pet }) => {
   const theme = createMuiTheme({
@@ -99,6 +101,16 @@ const AnimalCard = ({ pet }) => {
   });
 
   const classes = useStyles();
+
+  const [openTrigger, setOpenTrigger] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpenTrigger(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpenTrigger(true);
+  };
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -166,12 +178,14 @@ const AnimalCard = ({ pet }) => {
           <PasswordDialog originalPassword={pet.Password} pet={pet.id} />
 
           <div>
+          <Tooltip disableFocusListener title="Smazat">
             <IconButton
               onClick={handleClick}
               style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
             >
               <DeleteForeverTwoToneIcon />
             </IconButton>
+            </Tooltip>
             <Dialog
               open={open}
               onClose={handleClose}

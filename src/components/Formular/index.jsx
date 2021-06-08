@@ -28,6 +28,8 @@ import Fab from '@material-ui/core/Fab';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 import Link from '@material-ui/core/Link';
+import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -35,8 +37,11 @@ const Formular = () => {
       '& > *': {
         margin: theme.spacing(1),
         width: '25ch',
-        display: 'flex',
+        
       },
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent:'center',
     },
     input: {
       color: 'red',
@@ -54,6 +59,9 @@ const Formular = () => {
       backgroundColor: 'white',
       marginBottom: theme.spacing(2),
     },
+    activity:{
+      display: 'flex',
+    }
   }));
 
   const [pet, setPet] = React.useState({
@@ -134,6 +142,15 @@ const Formular = () => {
     setOpen(false);
   };
 
+  const [openTooltip, setOpenTooltip] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpenTooltip(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpenTooltip(true);
+  };
   const addDateToActivity = (indexOfActivity) => {
     //kvůli referencím, aby se dobře měnily to dávám do nového arraye, procházím staryý array activities  apoud se mi index activity rovná tomu, kterýho se to týká, tak musím přepsat daný atribut
     const newActivitiesArray = pet.Activities.map((activity, index) => {
@@ -289,7 +306,7 @@ const Formular = () => {
         </FormControl>
         <TextField
           id="outlined-basic"
-          label="Jméno majitele"
+          label="Přihlašovací jméno"
           variant="outlined"
           value={pet.Owner}
           onChange={(event) => {
@@ -322,10 +339,11 @@ const Formular = () => {
           />
         </FormControl>
 
-        <h3 style={{ color: '#00C2CB' }}>Evidované úkony:</h3>
+        <h3 style={{ color: '#00C2CB' }}>Pravidelné úkony:</h3>
 
         
               <CardActions className={classes.actions}>
+              <Tooltip disableFocusListener title="Přidat úkon">
                 <IconButton
                   color="primary"
                   aria-label="Nový záznam"
@@ -338,18 +356,19 @@ const Formular = () => {
                 >
                   <AddCircle style={{ fontSize: 50 }} />
                 </IconButton>
+                </Tooltip>
               </CardActions>
               {pet.Activities.map((activity, index) => {
           return (
             <>
-              <div>
+              <div className={classes.activity}>
                 <TextField
                   style={{
                     backgroundColor: '#EAFFF6 ',
                     minWidth: 200,
                   }}
                   id="outlined-basic"
-                  label="Název úkonu"
+                  label="Název"
                   variant="outlined"
                   size="small"
                   value={pet.Activities[index].name}
@@ -357,6 +376,7 @@ const Formular = () => {
                     handleChangeNameOfActivity(event, index);
                   }}
                 />
+                <Tooltip disableFocusListener title="Odstranit aktivitu">
                 <IconButton
                   aria-label="delete"
                   onClick={() => {
@@ -365,6 +385,7 @@ const Formular = () => {
                 >
                   <HighlightOffIcon />
                 </IconButton>
+                </Tooltip>
               </div>
 
               {activity.dates.map((date, i) => {
@@ -386,15 +407,18 @@ const Formular = () => {
                           handleChangeDateOfActivity(event, index, i);
                         }}
                       />
+                       <Tooltip disableFocusListener title="Odstranit záznam">
                       <IconButton
                         aria-label="delete"
                         onClick={deleteDateFromActivities}
                       >
                         <HighlightOffIcon />
                       </IconButton>
+                      </Tooltip>
 
                       {activity.dates.length === i + 1 && ( //tlačítko přidej se ukazuje pouze u poseldního pickeru
                         <CardActions className={classes.actions}>
+                          <Tooltip disableFocusListener title="Přidat datum">
                           <IconButton
                             color="primary"
                             aria-label="Nový záznam"
@@ -407,6 +431,7 @@ const Formular = () => {
                           >
                             <AddCircle size="small" />
                           </IconButton>
+                          </Tooltip>
                         </CardActions>
                       )}
                     </div>
