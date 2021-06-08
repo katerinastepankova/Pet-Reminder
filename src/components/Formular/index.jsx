@@ -154,12 +154,13 @@ const Formular = () => {
   };
 
   const deleteActivityFromActivities = (index) => {
-    console.log('klik');
     const activityToRemove = pet.Activities[index];
 
     const newArray = pet.Activities.filter((item) => item !== activityToRemove);
 
-    setPet({ ...pet, Activities: newArray });
+    
+      setPet({ ...pet, Activities: newArray});
+    
   };
 
   const handleChangeNameOfActivity = (event, indexOfActivity) => {
@@ -323,9 +324,7 @@ const Formular = () => {
 
         <h3 style={{ color: '#00C2CB' }}>Evidované úkony:</h3>
 
-        {pet.Activities.map((activity, index) => {
-          return (
-            <>
+        
               <CardActions className={classes.actions}>
                 <IconButton
                   color="primary"
@@ -340,6 +339,9 @@ const Formular = () => {
                   <AddCircle style={{ fontSize: 50 }} />
                 </IconButton>
               </CardActions>
+              {pet.Activities.map((activity, index) => {
+          return (
+            <>
               <div>
                 <TextField
                   style={{
