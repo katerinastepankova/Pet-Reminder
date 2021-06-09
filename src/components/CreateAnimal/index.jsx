@@ -40,6 +40,8 @@ import {
   NavLink,
   Redirect,
 } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const CreateAnimal = () => {
   const theme = createMuiTheme({
@@ -118,6 +120,15 @@ const CreateAnimal = () => {
 
     setOpen(false);
   };
+  const [openTooltip, setOpenTooltip] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpenTooltip(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpenTooltip(true);
+  };
 
  
 
@@ -155,6 +166,7 @@ const CreateAnimal = () => {
           </CardContent>
           <CardActions className={classes.actions}>
           <NavLink exact to="/create" activeClassName="selected">
+          <Tooltip disableFocusListener title="Přidat zvíře">
             <IconButton
               color="primary"
               aria-label="Nový záznam"
@@ -164,6 +176,7 @@ const CreateAnimal = () => {
             >
               <AddCircle size="medium" />
             </IconButton>
+            </Tooltip>
             </NavLink>
           </CardActions>
         </Paper>

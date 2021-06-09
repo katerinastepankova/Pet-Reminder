@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { FullscreenExitTwoTone } from '@material-ui/icons';
+import { DateRangeSharp, FullscreenExitTwoTone } from '@material-ui/icons';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -37,11 +37,10 @@ const Formular = () => {
       '& > *': {
         margin: theme.spacing(1),
         width: '25ch',
-        
       },
       display: 'flex',
       flexDirection: 'column',
-      justifyContent:'center',
+      justifyContent: 'center',
     },
     input: {
       color: 'red',
@@ -59,9 +58,9 @@ const Formular = () => {
       backgroundColor: 'white',
       marginBottom: theme.spacing(2),
     },
-    activity:{
+    activity: {
       display: 'flex',
-    }
+    },
   }));
 
   const [pet, setPet] = React.useState({
@@ -170,16 +169,6 @@ const Formular = () => {
     setPet({ ...pet, Activities: newArray });
   };
 
-  const deleteActivityFromActivities = (index) => {
-    const activityToRemove = pet.Activities[index];
-
-    const newArray = pet.Activities.filter((item) => item !== activityToRemove);
-
-    
-      setPet({ ...pet, Activities: newArray});
-    
-  };
-
   const handleChangeNameOfActivity = (event, indexOfActivity) => {
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
@@ -209,10 +198,30 @@ const Formular = () => {
     setPet({ ...pet, Activities: newActivitiesArray });
   };
 
-  const deleteDateFromActivities = (event, indexOfActivity, indexOfDate) => {
-    // const currentArray = pet.Activities;
-    // const removeDate=pet.Activities[indexOfActivity].dates[indexOfDate];
-    // console.log(removeDate);
+  const deleteDateFromActivities = (indexOfActivity, i) => {
+    console.log('klik');
+
+   
+    const dateToRemove = (pet.Activities[indexOfActivity].dates.splice(i, 1));
+
+    console.log(dateToRemove);
+    console.log(pet.Activities[indexOfActivity].dates);
+
+    const newActivitiesArray = pet.Activities.map((activity, index) => {
+      if (index !== indexOfActivity) {
+        return { ...activity, dates: dateToRemove };
+      }
+      return activity;
+    });
+    setPet({ ...pet, Activities: newActivitiesArray });
+  };
+
+  const deleteActivityFromActivities = (index) => {
+    const activityToRemove = pet.Activities[index];
+
+    const newArray = pet.Activities.filter((item) => item !== activityToRemove);
+
+    setPet({ ...pet, Activities: newArray });
   };
 
   const formatDate = (date) =>
@@ -341,24 +350,23 @@ const Formular = () => {
 
         <h3 style={{ color: '#00C2CB' }}>Pravidelné úkony:</h3>
 
-        
-              <CardActions className={classes.actions}>
-              <Tooltip disableFocusListener title="Přidat úkon">
-                <IconButton
-                  color="primary"
-                  aria-label="Nový záznam"
-                  onClick={() => addActivitytoActivities()}
-                  size="small"
-                  style={{
-                    color: '#EAFFF6 ',
-                    backgroundColor: '#00C2CB',
-                  }}
-                >
-                  <AddCircle style={{ fontSize: 50 }} />
-                </IconButton>
-                </Tooltip>
-              </CardActions>
-              {pet.Activities.map((activity, index) => {
+        <CardActions className={classes.actions}>
+          <Tooltip disableFocusListener title="Přidat úkon">
+            <IconButton
+              color="primary"
+              aria-label="Nový záznam"
+              onClick={() => addActivitytoActivities()}
+              size="small"
+              style={{
+                color: '#EAFFF6 ',
+                backgroundColor: '#00C2CB',
+              }}
+            >
+              <AddCircle style={{ fontSize: 50 }} />
+            </IconButton>
+          </Tooltip>
+        </CardActions>
+        {pet.Activities.map((activity, index) => {
           return (
             <>
               <div className={classes.activity}>
@@ -377,14 +385,14 @@ const Formular = () => {
                   }}
                 />
                 <Tooltip disableFocusListener title="Odstranit aktivitu">
-                <IconButton
-                  aria-label="delete"
-                  onClick={() => {
-                    deleteActivityFromActivities(index);
-                  }}
-                >
-                  <HighlightOffIcon />
-                </IconButton>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={() => {
+                      deleteActivityFromActivities(index);
+                    }}
+                  >
+                    <HighlightOffIcon />
+                  </IconButton>
                 </Tooltip>
               </div>
 
@@ -407,30 +415,32 @@ const Formular = () => {
                           handleChangeDateOfActivity(event, index, i);
                         }}
                       />
-                       <Tooltip disableFocusListener title="Odstranit záznam">
-                      <IconButton
-                        aria-label="delete"
-                        onClick={deleteDateFromActivities}
-                      >
-                        <HighlightOffIcon />
-                      </IconButton>
+                      <Tooltip disableFocusListener title="Odstranit záznam">
+                        <IconButton
+                          aria-label="delete"
+                          onClick={() => {
+                            deleteDateFromActivities(index, i);
+                          }}
+                        >
+                          <HighlightOffIcon />
+                        </IconButton>
                       </Tooltip>
 
                       {activity.dates.length === i + 1 && ( //tlačítko přidej se ukazuje pouze u poseldního pickeru
                         <CardActions className={classes.actions}>
                           <Tooltip disableFocusListener title="Přidat datum">
-                          <IconButton
-                            color="primary"
-                            aria-label="Nový záznam"
-                            onClick={() => addDateToActivity(index)}
-                            size="small"
-                            style={{
-                              color: '#EAFFF6 ',
-                              backgroundColor: '#00C2CB',
-                            }}
-                          >
-                            <AddCircle size="small" />
-                          </IconButton>
+                            <IconButton
+                              color="primary"
+                              aria-label="Nový záznam"
+                              onClick={() => addDateToActivity(index)}
+                              size="small"
+                              style={{
+                                color: '#EAFFF6 ',
+                                backgroundColor: '#00C2CB',
+                              }}
+                            >
+                              <AddCircle size="small" />
+                            </IconButton>
                           </Tooltip>
                         </CardActions>
                       )}
