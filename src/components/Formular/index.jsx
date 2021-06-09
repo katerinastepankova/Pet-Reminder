@@ -30,7 +30,7 @@ import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import {NahravaniSouboru} from '../NahravaniSouboru';
+import { NahravaniSouboru } from '../NahravaniSouboru';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -242,24 +242,8 @@ const Formular = () => {
         }}
       />
 
-      <div className="foto-zvirete">
-        <img className="img-form" src="/assets/Eyes.png" alt="" />
-        <NahravaniSouboru/>
 
-        {/* <div className="img-upload">
-          <label className={classes.input} htmlFor="outlined-button-file">
-            <Button variant="contained" color="primary" component="span">
-              Upload
-            </Button>
-          </label>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="icon-button-file"
-            type="file"
-          />
-        </div> */}
-      </div>
+      <NahravaniSouboru />
 
       <form className={classes.root} noValidate autoComplete="off">
         {/* <TextField

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { db, storage } from '../../db';
+import './style.css'
 
 //   const allInputs = {imgUrl: ''};
 //   const [imageAsFile, setImageAsFile] = useState('');
@@ -48,6 +49,7 @@ export const NahravaniSouboru = () => {
   };
   return (
     <form onSubmit={nahrajNaFirebase}>
+      <div className="foto">
       <input
         type="file"
         onChange={(event) => setSoubor(event.target.files[0])}
@@ -55,8 +57,9 @@ export const NahravaniSouboru = () => {
       <button>Nahrát</button>
 
       {fotky.map((fotka) => (
-        <img src={fotka.url} height="200" alt="" />
+        <img src={fotka.url} className="foto-img" alt="" />
       ))}
+      </div>
     </form>
   );
 };

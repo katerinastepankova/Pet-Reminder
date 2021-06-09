@@ -1,0 +1,7 @@
+.foto{
+  display:flex;
+  flex-direction: column;
+}
+.foto-img{
+  max-height: 200px;
+}
