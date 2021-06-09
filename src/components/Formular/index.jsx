@@ -65,6 +65,7 @@ const Formular = () => {
   }));
 
   const [pet, setPet] = React.useState({
+    UrlPic: '',
     Type: '',
     Password: '',
     Owner: '',
@@ -243,7 +244,7 @@ const Formular = () => {
       />
 
 
-      <NahravaniSouboru />
+      {/* <NahravaniSouboru /> */}
 
       <form className={classes.root} noValidate autoComplete="off">
         {/* <TextField
