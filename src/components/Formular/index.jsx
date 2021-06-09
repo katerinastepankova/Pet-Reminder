@@ -208,8 +208,9 @@ const Formular = () => {
     console.log(pet.Activities[indexOfActivity].dates);
 
     const newActivitiesArray = pet.Activities.map((activity, index) => {
-      if (index !== indexOfActivity) {
-        return { ...activity, dates: dateToRemove };
+      if (index === indexOfActivity) {
+        /* return { ...activity, dates: !dateToRemove }; */
+        return { ...activity, dates: pet.Activities[indexOfActivity].dates };
       }
       return activity;
     });
