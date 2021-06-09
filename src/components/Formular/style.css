@@ -1,11 +1,20 @@
 .foto-zvirete{
-  height: 100px;
+  /* height: 100px;
   width: 100px;
   border:  1.5px solid #737373;
   font-size: 80px;
   color: #737373;
-  text-align: center;
+  text-align: center; */
+  display:flex;
   
+}
+
+.img-form{
+  height: 150px;
+  width: 150px;
+  border:  1.5px solid #737373;
+  margin: 15px;
+
 }
 .activity-item{
   display: flex;
@@ -20,3 +29,7 @@ form{
 h2{
   background-color: white;
 }
+/* .img-upload{
+  display:flex;
+  flex-direction: column;
+} */

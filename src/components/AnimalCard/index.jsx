@@ -102,15 +102,15 @@ const AnimalCard = ({ pet }) => {
 
   const classes = useStyles();
 
-  const [openTrigger, setOpenTrigger] = React.useState(false);
+  // const [openTrigger, setOpenTrigger] = React.useState(false);
 
-  const handleTooltipClose = () => {
-    setOpenTrigger(false);
-  };
+  // const handleTooltipClose = () => {
+  //   setOpenTrigger(false);
+  // };
 
-  const handleTooltipOpen = () => {
-    setOpenTrigger(true);
-  };
+  // const handleTooltipOpen = () => {
+  //   setOpenTrigger(true);
+  // };
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {

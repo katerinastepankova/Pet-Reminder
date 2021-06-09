@@ -17,6 +17,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 import MenuItem from '@material-ui/core/MenuItem';
+import { NahravaniSouboru } from './components/NahravaniSouboru';
+import { db, storage } from './db';
 
 const App = () => {
   const [search, setSearch] = useState('');
@@ -31,6 +33,7 @@ const App = () => {
  <div className="app-container">
 <Router>
 <Header search={search} searchForHeader={handleSearchChange}/>
+
 
 <Switch>
             <Route exact path="/">

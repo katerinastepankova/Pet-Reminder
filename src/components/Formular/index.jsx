@@ -30,6 +30,7 @@ import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import {NahravaniSouboru} from '../NahravaniSouboru';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -141,7 +142,7 @@ const Formular = () => {
     setOpen(false);
   };
 
-  const [openTooltip, setOpenTooltip] = React.useState(false);
+  /*  const [openTooltip, setOpenTooltip] = React.useState(false);
 
   const handleTooltipClose = () => {
     setOpenTooltip(false);
@@ -149,7 +150,7 @@ const Formular = () => {
 
   const handleTooltipOpen = () => {
     setOpenTooltip(true);
-  };
+  }; */
   const addDateToActivity = (indexOfActivity) => {
     //kvůli referencím, aby se dobře měnily to dávám do nového arraye, procházím staryý array activities  apoud se mi index activity rovná tomu, kterýho se to týká, tak musím přepsat daný atribut
     const newActivitiesArray = pet.Activities.map((activity, index) => {
@@ -164,7 +165,7 @@ const Formular = () => {
   const addActivitytoActivities = () => {
     const newActivity = { name: '', dates: [new Date()] };
     const newArray = pet.Activities;
-    newArray.push(newActivity);
+    newArray.unshift(newActivity);
 
     setPet({ ...pet, Activities: newArray });
   };
@@ -201,8 +202,7 @@ const Formular = () => {
   const deleteDateFromActivities = (indexOfActivity, i) => {
     console.log('klik');
 
-   
-    const dateToRemove = (pet.Activities[indexOfActivity].dates.splice(i, 1));
+    const dateToRemove = pet.Activities[indexOfActivity].dates.splice(i, 1);
 
     console.log(dateToRemove);
     console.log(pet.Activities[indexOfActivity].dates);
@@ -242,29 +242,25 @@ const Formular = () => {
         }}
       />
 
-      <div className="foto-zvirete">?</div>
-      <div>
-        <label className={classes.input} htmlFor="outlined-button-file">
-          <Button variant="contained" color="primary" component="span">
-            Upload
-          </Button>
-        </label>
-        <input
-          accept="image/*"
-          className={classes.input}
-          id="icon-button-file"
-          type="file"
-        />
-        {/* <label htmlFor="icon-button-file">
-          <IconButton
-            color="primary"
-            aria-label="upload picture"
-            component="span"
-          >
-            <PhotoCamera />
-          </IconButton>
-        </label> */}
+      <div className="foto-zvirete">
+        <img className="img-form" src="/assets/Eyes.png" alt="" />
+        <NahravaniSouboru/>
+
+        {/* <div className="img-upload">
+          <label className={classes.input} htmlFor="outlined-button-file">
+            <Button variant="contained" color="primary" component="span">
+              Upload
+            </Button>
+          </label>
+          <input
+            accept="image/*"
+            className={classes.input}
+            id="icon-button-file"
+            type="file"
+          />
+        </div> */}
       </div>
+
       <form className={classes.root} noValidate autoComplete="off">
         {/* <TextField
           id="outlined-basic"
@@ -385,7 +381,7 @@ const Formular = () => {
                     handleChangeNameOfActivity(event, index);
                   }}
                 />
-                <Tooltip disableFocusListener title="Odstranit aktivitu">
+                <Tooltip disableFocusListener title="Odstranit úkon">
                   <IconButton
                     aria-label="delete"
                     onClick={() => {
