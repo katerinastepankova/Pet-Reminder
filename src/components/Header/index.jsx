@@ -18,21 +18,15 @@ const Header = ({ searchForHeader, search }) => {
   const [currentPath, setCurrentPath] = useState(null);
   const location = useLocation();
   useEffect(() => {
-    
     setCurrentPath(location.pathname);
   }, [location]);
 
   return (
     <>
       <div className="header">
-        <img
-          className="logoHeader"
-          src="/assets/LogoPetRemindersTlapkou.svg"
-          alt="logo"
-        />
         <div className="navigace">
           <Nav />
-          
+
           {currentPath === '/' && (
             <>
               <Search onChangeParent={searchForHeader} valueParent={search} />
@@ -40,6 +34,7 @@ const Header = ({ searchForHeader, search }) => {
             </>
           )}
         </div>
+        <img className="logoHeader" src="/assets/Logo.svg" alt="logo" />
       </div>
     </>
   );

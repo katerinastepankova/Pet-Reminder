@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { DateRangeSharp, FullscreenExitTwoTone } from '@material-ui/icons';
+import { DateRangeSharp, FullscreenExitTwoTone, PlayCircleFilledWhite } from '@material-ui/icons';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -30,6 +30,7 @@ import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import CardMedia from '@material-ui/core/CardMedia';
 // import { NahravaniSouboru } from '../NahravaniSouboru';
 
 const Formular = () => {
@@ -52,6 +53,7 @@ const Formular = () => {
     },
     textField: {
       marginLeft: theme.spacing(8),
+      backgroundColor: 'white',
     },
     petname: {
       fontSize: '25px',
@@ -61,6 +63,7 @@ const Formular = () => {
     },
     activity: {
       display: 'flex',
+      
     },
   }));
 
@@ -70,7 +73,6 @@ const Formular = () => {
     Password: '',
     Owner: '',
     Name: '',
-    // ImageUrl: '',
     Birth: '',
     Activities: [{ name: '', dates: ['2021-06-07'] }],
   });
@@ -106,6 +108,9 @@ const Formular = () => {
     /*   console.log(event.target.value); */
     setPet({ ...pet, [nameOfInput]: event.target.value });
     /* console.log(pet); */
+
+    if (nameOfInput === 'Type') {
+    }
   };
 
   const [values, setValues] = React.useState({
@@ -243,6 +248,11 @@ const Formular = () => {
         }}
       />
 
+      {pet.Type === 'Kočka' && <img className="img-Form" src="/assets/Cat2.png" alt="" />}
+      {pet.Type === 'Pes' && <img className="img-Form" src="/assets/Gaspar2.png" alt="" />}
+      {pet.Type === 'Kůň' && <img className="img-Form" src="/assets/Horse2.jpg" alt="" />}
+      {pet.Type === 'Nezvoleno' && <img className="img-Form" src="/assets/Eyes2.png" alt="" />}
+      {pet.Type === '' && <img src="" alt="" />}
 
       {/* <NahravaniSouboru /> */}
 
@@ -287,9 +297,7 @@ const Formular = () => {
               handleChangeEveryInput(event, 'Type');
             }}
           >
-            <MenuItem value="Nezvoleno">
-              <em>Nezvoleno</em>
-            </MenuItem>
+            <MenuItem value={'Nezvoleno'}>Nezvoleno</MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
             <MenuItem value={'Kůň'}>Kůň</MenuItem>
