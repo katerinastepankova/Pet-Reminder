@@ -141,23 +141,55 @@ const AnimalCard = ({ pet }) => {
 
   return (
     <>
-      {/* <Grid
-        className={classes.container}
-        container
-        direction="row"
-        spacing={2}
-        justify="center"
-      >
-        
-        <Grid item xs={12} sm={6} md={4}> */}
+     
       <Paper className={classes.card} style={{ backgroundColor: '#EAFFF6 ' }}>
-        <CardMedia
-          className={classes.media}
-          component="img"
-          alt="Pes"
-          image="/assets/Gaspar2.png"
-          title="Contemplative Reptile"
-        />
+        {pet.Type === 'Kočka' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Kočka"
+            image="/assets/Cat2.png"
+            title="Cat"
+          />
+        )}
+        {pet.Type === 'Pes' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Pes"
+            image="/assets/Gaspar2.png"
+            title="Dog"
+          />
+        )}
+        {pet.Type === 'Kůň' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Kůň"
+            image="/assets/Horse2.jpg"
+            title="Cat"
+          />
+        )}
+        {pet.Type === 'Nezvoleno' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Nezvoleno"
+            image="/assets/Eyes2.png"
+            title="Not defined"
+          />
+        )}
+
+        {pet.Type === '' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt=""
+            image=""
+            title="Not defined"
+          />
+        )}
+
         <CardContent>
           <Typography variant="h4" component="h4" style={{ color: '#00C2CB ' }}>
             {pet.Name}
@@ -178,13 +210,13 @@ const AnimalCard = ({ pet }) => {
           <PasswordDialog originalPassword={pet.Password} pet={pet.id} />
 
           <div>
-          <Tooltip disableFocusListener title="Smazat">
-            <IconButton
-              onClick={handleClick}
-              style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
-            >
-              <DeleteForeverTwoToneIcon />
-            </IconButton>
+            <Tooltip disableFocusListener title="Smazat">
+              <IconButton
+                onClick={handleClick}
+                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+              >
+                <DeleteForeverTwoToneIcon />
+              </IconButton>
             </Tooltip>
             <Dialog
               open={open}
@@ -204,7 +236,11 @@ const AnimalCard = ({ pet }) => {
                 <Button onClick={handleClose} color="primary">
                   ZPĚT
                 </Button>
-                <Button onClick={handleCloseAndDelete} color="primary" autoFocus>
+                <Button
+                  onClick={handleCloseAndDelete}
+                  color="primary"
+                  autoFocus
+                >
                   OK
                 </Button>
               </DialogActions>
