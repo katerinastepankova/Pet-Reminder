@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { db, storage } from '../../db';
-import './style.css'
+// import React, { useEffect, useState } from 'react';
+// import { db, storage } from '../../db';
+// import './style.css';
 
 //   const allInputs = {imgUrl: ''};
 //   const [imageAsFile, setImageAsFile] = useState('');
@@ -21,45 +21,52 @@ import './style.css'
 //   }
 
 //   }
-export const NahravaniSouboru = () => {
-  const [soubor, setSoubor] = useState();
+// export const NahravaniSouboru = () => {
+//   const [soubor, setSoubor] = useState();
 
-  const [fotky, setFotky] = useState([]);
+//   const [fotky, setFotky] = useState([]);
 
-  useEffect(() =>
-    db.collection('fotky').onSnapshot((snapshot) => {
-      setFotky(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }),
-  );
+//   useEffect(() => 
+  
+//   db.collection("fotky").onSnapshot((snapshot) => {
+//     setFotky(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+//   }),[]
+// );
+// console.log(data);
 
-  const nahrajNaFirebase = (event) => {
-    event.preventDefault();
-    if (!soubor) {
-      return;
-    }
-    storage
-      .ref(`/obrazky/${soubor.name}`)
-      .put(soubor)
-      .then((snapshot) => snapshot.ref.getDownloadURL())
-      .then((urlNahranehoObrazku) => {
-        db.collection('fotky').add({
-          url: urlNahranehoObrazku,
-        });
-      });
-  };
-  return (
-    <form onSubmit={nahrajNaFirebase}>
-      <div className="foto">
-      <input
-        type="file"
-        onChange={(event) => setSoubor(event.target.files[0])}
-      />
-      <button>Nahrát</button>
+  
 
-      {fotky.map((fotka) => (
-        <img src={fotka.url} className="foto-img" alt="" />
-      ))}
-      </div>
-    </form>
-  );
-};
+//   const nahrajNaFirebase = (event) => {
+//     event.preventDefault();
+//     if (!soubor) {
+//       return;
+//     }
+//     storage
+//       .ref(`/obrazky/${soubor.name}`)
+//       .put(soubor)
+//       .then((snapshot) => snapshot.ref.getDownloadURL())
+//       .then((urlNahranehoObrazku) => {
+//         db.collection('fotky').add({
+//           url: urlNahranehoObrazku,
+//         });
+//       });
+//   };
+
+//   console.log(NahravaniSouboru);
+
+//   return (
+//     <form onSubmit={nahrajNaFirebase}>
+//       <div className="foto">
+//         <input
+//           type="file"
+//           onChange={(event) => setSoubor(event.target.files[0])}
+//         />
+//         <button>Nahrát</button>
+
+//         {fotky.map((fotka) => (
+//           <img src={fotka.url} className="foto-img" alt="" />
+//         ))}
+//       </div>
+//     </form>
+//   );
+// };
