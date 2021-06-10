@@ -48,6 +48,7 @@ const Formular = () => {
       flexDirection: 'column',
       justifyContent: 'center',
       backgroundColor: '#EAFFF6',
+      padding: theme.spacing(3),
     },
     input: {
       color: '#00C2CB',
@@ -57,7 +58,7 @@ const Formular = () => {
       justifyContent: 'center',
     },
     textField: {
-      marginLeft: theme.spacing(8),
+      marginLeft: theme.spacing(14),
       backgroundColor: 'white',
     },
     petname: {
@@ -65,7 +66,7 @@ const Formular = () => {
       /*  color: 'red', */
       backgroundColor: 'white',
       marginBottom: theme.spacing(2),
-      textAlign: 'centre',
+      textAlign: 'center',
     },
     activity: {
       display: 'flex',
@@ -241,9 +242,9 @@ const Formular = () => {
 
   return (
     <>
-      {/* <h2>Karta zvířete</h2> */}
+     
       <TextField
-        className={classes.petname}
+       className={classes.petname}
         id="outlined-basic"
         label="Jméno zvířete"
         variant="outlined"
@@ -251,6 +252,7 @@ const Formular = () => {
         onChange={(event) => {
           handleChangeEveryInput(event, 'Name');
         }}
+       
       />
 
       {pet.Type === 'Kočka' && (
@@ -293,7 +295,7 @@ const Formular = () => {
           className={classes.petname}
         >
           <InputLabel id="demo-simple-select-outlined-label">
-            Typ zvířete
+            Druh zvířete
           </InputLabel>
           <Select
             labelId="demo-simple-select-outlined-label"
@@ -304,7 +306,7 @@ const Formular = () => {
               handleChangeEveryInput(event, 'Type');
             }}
           >
-            <MenuItem value={'Nezvolen'}>Typ zvířete nezvolen</MenuItem>
+            <MenuItem value={'Nezvolen'}>Druh zvířete nezvolen</MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
             <MenuItem value={'Kůň'}>Kůň</MenuItem>
@@ -313,7 +315,7 @@ const Formular = () => {
         <TextField
           className={classes.petname}
           id="outlined-basic"
-          label="Přihlašovací jméno"
+          label="Vytvoř přihlašovací jméno"
           variant="outlined"
           value={pet.Owner}
           onChange={(event) => {
@@ -322,7 +324,7 @@ const Formular = () => {
         />
 
         <FormControl className={clsx(classes.margin)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Heslo</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">Vytvoř heslo</InputLabel>
           <OutlinedInput
             className={classes.petname}
             id="outlined-adornment-password"
@@ -374,7 +376,7 @@ const Formular = () => {
                 <TextField
                   className={classes.petname}
                   style={{
-                    minWidth: 200,
+                    minWidth: 200, backgroundColor:'#f2f2f2 ', color:'primary'
                   }}
                   id="outlined-basic"
                   label="Název"
@@ -454,19 +456,21 @@ const Formular = () => {
         })}
         <CardActions className={classes.actions}>
           <Button
+          style={{backgroundColor: '#737373'}}
             onClick={handleSubmit}
             variant="contained"
             color="primary"
             size="large"
             className={classes.button}
-            startIcon={<SaveIcon />}
+           
           >
             Uložit
           </Button>
           <Snackbar
+          style={{backgroundColor: '#00C2CB'}}
             anchorOrigin={{
               vertical: 'top',
-              horizontal: 'center',
+              horizontal: 'right',
             }}
             open={open}
             autoHideDuration={3000}
@@ -475,14 +479,15 @@ const Formular = () => {
             action={
               <React.Fragment>
                 <Button
-                  color="secondary"
-                  size="small"
+                  
+                  size="medium"
                   onClick={handleClose}
                 ></Button>
                 <IconButton
-                  size="medium"
+                style={{backgroundColor: '#00C2CB'}}
+                  size="small"
                   aria-label="close"
-                  color="inherit"
+                  // color="inherit"
                   onClick={handleClose}
                 >
                   <CloseIcon fontSize="large" />
