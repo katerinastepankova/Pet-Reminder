@@ -84,6 +84,7 @@ const AnimalCard = ({ pet }) => {
       alignItems: 'center',
       flexDirection: 'column',
       margin: theme.spacing(1),
+      
     },
     container: {
       flexDirection: 'column',
@@ -203,7 +204,7 @@ const AnimalCard = ({ pet }) => {
             {/* <span>
               {pet.Type} , {differenceInYears(Number(new Date()), Number(formatDate(pet.Birth)))}
             </span> */}
-            <span>{pet.Type}</span>
+            <span>{pet.Type==='Nezvoleno'?'Typ nezvolen':pet.Type}</span>
           </Typography>
         </CardContent>
         <CardActions>

@@ -47,7 +47,7 @@ const Formular = () => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      backgroundColor:'#EAFFF6'
+      backgroundColor: '#EAFFF6',
     },
     input: {
       color: '#00C2CB',
@@ -85,7 +85,7 @@ const Formular = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
+    // console.log(id);
     if (id !== undefined) {
       return db
         .collection('Pet')
@@ -262,7 +262,7 @@ const Formular = () => {
       {pet.Type === 'Kůň' && (
         <img className="img-Form" src="/assets/Horse2.jpg" alt="" />
       )}
-      {pet.Type === 'Nezvoleno' && (
+      {pet.Type === 'Nezvolen' && (
         <img className="img-Form" src="/assets/Eyes2.png" alt="" />
       )}
       {pet.Type === '' && <img src="" alt="" />}
@@ -270,8 +270,6 @@ const Formular = () => {
       {/* <NahravaniSouboru /> */}
 
       <form className={classes.root} noValidate autoComplete="off">
-        
-
         <TextField
           className={classes.petname}
           id="date"
@@ -306,7 +304,7 @@ const Formular = () => {
               handleChangeEveryInput(event, 'Type');
             }}
           >
-            <MenuItem value={'Nezvoleno'}>Nezvoleno</MenuItem>
+            <MenuItem value={'Nezvolen'}>Typ zvířete nezvolen</MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
             <MenuItem value={'Kůň'}>Kůň</MenuItem>
@@ -349,7 +347,9 @@ const Formular = () => {
           />
         </FormControl>
 
-        <h3 style={{ color: '#00C2CB', textAlign:'center' }}>Pravidelné úkony:</h3>
+        <h3 style={{ color: '#00C2CB', textAlign: 'center' }}>
+          Pravidelné úkony:
+        </h3>
 
         <CardActions className={classes.actions}>
           <Tooltip disableFocusListener title="Přidat úkon">
@@ -375,8 +375,7 @@ const Formular = () => {
                   className={classes.petname}
                   style={{
                     minWidth: 200,
-                  }} 
-
+                  }}
                   id="outlined-basic"
                   label="Název"
                   variant="outlined"
@@ -493,7 +492,7 @@ const Formular = () => {
           />
         </CardActions>
       </form>
-      <Fab aria-label="add" style={{margin: 15 }}>
+      <Fab aria-label="add" style={{ margin: 15 }}>
         <Link href="#" color="inherit">
           <ArrowUpwardTwoToneIcon />{' '}
         </Link>
