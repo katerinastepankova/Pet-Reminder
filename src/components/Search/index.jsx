@@ -3,12 +3,13 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const Search = ({ onChangeParent, valueParent }) => {
+
   const useStyles = makeStyles((theme) => ({
-    root: {
+    search: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
         width: '18ch',
-        color: 'secondary',
+        backgroundColor: 'white',
       },
     },
   }));
@@ -16,7 +17,7 @@ const Search = ({ onChangeParent, valueParent }) => {
   const classes = useStyles();
   return (
     <>
-      <form className={classes.root} noValidate autoComplete="off">
+      <form className={classes.search} noValidate autoComplete="off">
         <TextField
           value={valueParent}
           id="search"

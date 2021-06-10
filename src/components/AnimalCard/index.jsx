@@ -117,10 +117,10 @@ const AnimalCard = ({ pet }) => {
     setOpen(true);
   };
 
-  const formatDate = (date) =>
-    date.seconds === undefined ? date : date.toDate();
+  // const formatDate = (date) =>
+  //   date.seconds === undefined ? date : date.toDate();
 
-  console.log(pet, formatDate(pet.Birth));
+  // console.log(pet, formatDate(pet.Birth));
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {

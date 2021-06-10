@@ -13,6 +13,7 @@ import {
 import OProjektu from '../OProjektu';
 import HomePage from '../HomePage';
 import Formular from '../Formular';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Nav = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,7 +37,7 @@ const Nav = () => {
             onClick={handleClick}
             style={{ color: '#00C2CB ' , fontSize: '25px'}}
           >
-            Menu
+            <MenuIcon  style={{fontSize: 50, color: '#737373'}}/>
           </Button>
           <Menu
             id="simple-menu"
@@ -47,14 +48,14 @@ const Nav = () => {
           
 
           >
-            <NavLink exact to="/" activeClassName="selected">
-              <MenuItem onClick={handleClose}>Domů</MenuItem>
+            <NavLink style={{textDecoration: 'none'}} exact to="/" activeClassName="selected">
+              <MenuItem style={{color: '#737373' }} onClick={handleClose}>Domů</MenuItem>
             </NavLink>
-            <NavLink exact to="/oprojektu" activeClassName="selected">
-              <MenuItem onClick={handleClose}>O projektu</MenuItem>
+            <NavLink style={{textDecoration: 'none'}} exact to="/oprojektu" activeClassName="selected">
+              <MenuItem style={{color: '#737373' }} onClick={handleClose}>O projektu</MenuItem>
             </NavLink>
-            <NavLink exact to="/create" activeClassName="selected">
-              <MenuItem onClick={handleClose}>Nový záznam</MenuItem>
+            <NavLink style={{textDecoration: 'none'}} exact to="/create" activeClassName="selected">
+              <MenuItem style={{color: '#737373' }} onClick={handleClose}>Nový záznam</MenuItem>
             </NavLink>
           </Menu>
           

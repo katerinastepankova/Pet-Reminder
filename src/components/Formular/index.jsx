@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './style.css';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { DateRangeSharp, FullscreenExitTwoTone, PlayCircleFilledWhite } from '@material-ui/icons';
+import {
+  DateRangeSharp,
+  FullscreenExitTwoTone,
+  PlayCircleFilledWhite,
+} from '@material-ui/icons';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -38,14 +42,15 @@ const Formular = () => {
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        width: '25ch',
+        // width: '25ch',
       },
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+      backgroundColor:'#EAFFF6'
     },
     input: {
-      color: 'red',
+      color: '#00C2CB',
     },
     actions: {
       flexDirection: 'column',
@@ -57,13 +62,13 @@ const Formular = () => {
     },
     petname: {
       fontSize: '25px',
-      color: 'red',
+      /*  color: 'red', */
       backgroundColor: 'white',
       marginBottom: theme.spacing(2),
+      textAlign: 'centre',
     },
     activity: {
       display: 'flex',
-      
     },
   }));
 
@@ -74,13 +79,13 @@ const Formular = () => {
     Owner: '',
     Name: '',
     Birth: '',
-    Activities: [{ name: '', dates: ['2021-06-07'] }],
+    Activities: [{ name: '', dates: ['2021-01-01'] }],
   });
 
   const { id } = useParams();
 
   useEffect(() => {
-    /*   console.log(id); */
+    console.log(id);
     if (id !== undefined) {
       return db
         .collection('Pet')
@@ -248,27 +253,27 @@ const Formular = () => {
         }}
       />
 
-      {pet.Type === 'Kočka' && <img className="img-Form" src="/assets/Cat2.png" alt="" />}
-      {pet.Type === 'Pes' && <img className="img-Form" src="/assets/Gaspar2.png" alt="" />}
-      {pet.Type === 'Kůň' && <img className="img-Form" src="/assets/Horse2.jpg" alt="" />}
-      {pet.Type === 'Nezvoleno' && <img className="img-Form" src="/assets/Eyes2.png" alt="" />}
+      {pet.Type === 'Kočka' && (
+        <img className="img-Form" src="/assets/Cat2.png" alt="" />
+      )}
+      {pet.Type === 'Pes' && (
+        <img className="img-Form" src="/assets/Gaspar2.png" alt="" />
+      )}
+      {pet.Type === 'Kůň' && (
+        <img className="img-Form" src="/assets/Horse2.jpg" alt="" />
+      )}
+      {pet.Type === 'Nezvoleno' && (
+        <img className="img-Form" src="/assets/Eyes2.png" alt="" />
+      )}
       {pet.Type === '' && <img src="" alt="" />}
 
       {/* <NahravaniSouboru /> */}
 
       <form className={classes.root} noValidate autoComplete="off">
-        {/* <TextField
-          id="outlined-basic"
-          label="http "
-          variant="outlined"
-          size="small"
-          value={pet.ImageUrl}
-          onChange={(event) => {
-            handleChangeEveryInput(event, 'ImageUrl');
-          }}
-        /> */}
+        
 
         <TextField
+          className={classes.petname}
           id="date"
           variant="outlined"
           label="Datum narození"
@@ -284,7 +289,11 @@ const Formular = () => {
           }}
         />
 
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          variant="outlined"
+          className={classes.formControl}
+          className={classes.petname}
+        >
           <InputLabel id="demo-simple-select-outlined-label">
             Typ zvířete
           </InputLabel>
@@ -304,6 +313,7 @@ const Formular = () => {
           </Select>
         </FormControl>
         <TextField
+          className={classes.petname}
           id="outlined-basic"
           label="Přihlašovací jméno"
           variant="outlined"
@@ -316,6 +326,7 @@ const Formular = () => {
         <FormControl className={clsx(classes.margin)} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Heslo</InputLabel>
           <OutlinedInput
+            className={classes.petname}
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={pet.Password}
@@ -334,11 +345,11 @@ const Formular = () => {
                 </IconButton>
               </InputAdornment>
             }
-            labelWidth={70}
+            /* labelWidth={70} */
           />
         </FormControl>
 
-        <h3 style={{ color: '#00C2CB' }}>Pravidelné úkony:</h3>
+        <h3 style={{ color: '#00C2CB', textAlign:'center' }}>Pravidelné úkony:</h3>
 
         <CardActions className={classes.actions}>
           <Tooltip disableFocusListener title="Přidat úkon">
@@ -361,10 +372,11 @@ const Formular = () => {
             <>
               <div className={classes.activity}>
                 <TextField
+                  className={classes.petname}
                   style={{
-                    backgroundColor: '#EAFFF6 ',
                     minWidth: 200,
-                  }}
+                  }} 
+
                   id="outlined-basic"
                   label="Název"
                   variant="outlined"
@@ -400,7 +412,7 @@ const Formular = () => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        style={{ minWidth: 135 }}
+                        style={{ minWidth: 200 }}
                         onChange={(event) => {
                           handleChangeDateOfActivity(event, index, i);
                         }}
@@ -481,7 +493,7 @@ const Formular = () => {
           />
         </CardActions>
       </form>
-      <Fab aria-label="add">
+      <Fab aria-label="add" style={{margin: 15 }}>
         <Link href="#" color="inherit">
           <ArrowUpwardTwoToneIcon />{' '}
         </Link>
