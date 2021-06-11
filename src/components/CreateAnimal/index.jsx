@@ -174,7 +174,7 @@ const CreateAnimal = () => {
               size="medium"
               style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
             >
-              <AddCircle size="medium" />
+              <AddCircle size="Large" />
             </IconButton>
             </Tooltip>
             </NavLink>

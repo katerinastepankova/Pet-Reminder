@@ -19,7 +19,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 import { useParams } from 'react-router-dom';
-import { db } from '../../db';
+import { db, storage } from '../../db';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
@@ -35,6 +35,9 @@ import Link from '@material-ui/core/Link';
 import Tooltip from '@material-ui/core/Tooltip';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import CardMedia from '@material-ui/core/CardMedia';
+import { FormHelperText } from '@material-ui/core';
+import md5 from 'md5';
+import { NahravaniSouboru } from '../NahravaniSouboru';
 // import { NahravaniSouboru } from '../NahravaniSouboru';
 
 const Formular = () => {
@@ -100,9 +103,10 @@ const Formular = () => {
   }, [db, id]);
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
-
-    if (id === undefined) {
+    if (pet.Password === '' || pet.Owner === '') {//bud vracm dialog na setOpen něco nebo hlášku tooltip nad tlačítko
+      window.alert('Přihlašovací jméno a heslo je před uložením třeba vyplnit');
+      return;
+    } else if (id === undefined) {
       db.collection('Pet').add(pet);
     } else {
       db.collection('Pet').doc(id).update(pet);
@@ -113,11 +117,15 @@ const Formular = () => {
   const handleChangeEveryInput = (event, nameOfInput) => {
     /*   console.log(event.target.value); */
     setPet({ ...pet, [nameOfInput]: event.target.value });
-    /* console.log(pet); */
-
-    if (nameOfInput === 'Type') {
-    }
+    console.log(pet);
   };
+
+  const predaniUrl =(url)=>{
+    console.log('x', url)
+    setPet({...pet, UrlPic:url});
+  }
+  {/* tady si vyrobím funkci která bude mít 1 parametr - adresa obrátzku - url - uvnitř té funkce se nastavuje stav v Pet a jemu dovlastnosti uložím tu url, a aby se to uložilo do firebase v rámci onsubmit.
+    ve chvíli kdy sem vložím nahráníSoboru, tu funkci dám jako prop */}
 
   const [values, setValues] = React.useState({
     password: '',
@@ -154,15 +162,6 @@ const Formular = () => {
     setOpen(false);
   };
 
-  /*  const [openTooltip, setOpenTooltip] = React.useState(false);
-
-  const handleTooltipClose = () => {
-    setOpenTooltip(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setOpenTooltip(true);
-  }; */
   const addDateToActivity = (indexOfActivity) => {
     //kvůli referencím, aby se dobře měnily to dávám do nového arraye, procházím staryý array activities  apoud se mi index activity rovná tomu, kterýho se to týká, tak musím přepsat daný atribut
     const newActivitiesArray = pet.Activities.map((activity, index) => {
@@ -242,9 +241,9 @@ const Formular = () => {
 
   return (
     <>
-     
       <TextField
-       className={classes.petname}
+        required
+        className={classes.petname}
         id="outlined-basic"
         label="Jméno zvířete"
         variant="outlined"
@@ -252,8 +251,9 @@ const Formular = () => {
         onChange={(event) => {
           handleChangeEveryInput(event, 'Name');
         }}
-       
       />
+
+    <img className="img-Form" src={pet.UrlPic}alt="" />  
 
       {pet.Type === 'Kočka' && (
         <img className="img-Form" src="/assets/Cat2.png" alt="" />
@@ -269,7 +269,8 @@ const Formular = () => {
       )}
       {pet.Type === '' && <img src="" alt="" />}
 
-      {/* <NahravaniSouboru /> */}
+      <NahravaniSouboru funkce={predaniUrl}/>
+      <p>{pet.UrlPic}</p>
 
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
@@ -324,7 +325,9 @@ const Formular = () => {
         />
 
         <FormControl className={clsx(classes.margin)} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Vytvoř heslo</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">
+            Vytvoř heslo
+          </InputLabel>
           <OutlinedInput
             className={classes.petname}
             id="outlined-adornment-password"
@@ -376,10 +379,12 @@ const Formular = () => {
                 <TextField
                   className={classes.petname}
                   style={{
-                    minWidth: 200, backgroundColor:'#f2f2f2 ', color:'primary'
+                    minWidth: 200,
+                    backgroundColor: '#f2f2f2 ',
+                    color: 'primary',
                   }}
                   id="outlined-basic"
-                  label="Název"
+                  label="Název úkonu"
                   variant="outlined"
                   size="small"
                   value={pet.Activities[index].name}
@@ -456,35 +461,30 @@ const Formular = () => {
         })}
         <CardActions className={classes.actions}>
           <Button
-          style={{backgroundColor: '#737373'}}
+            style={{ backgroundColor: '#737373' }}
             onClick={handleSubmit}
             variant="contained"
             color="primary"
             size="large"
             className={classes.button}
-           
           >
             Uložit
           </Button>
           <Snackbar
-          style={{backgroundColor: '#00C2CB'}}
+            style={{ backgroundColor: '#00C2CB' }}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'right',
             }}
             open={open}
-            autoHideDuration={3000}
+            autoHideDuration={800}
             onClose={handleClose}
             message="Uloženo"
             action={
               <React.Fragment>
-                <Button
-                  
-                  size="medium"
-                  onClick={handleClose}
-                ></Button>
+                <Button size="medium" onClick={handleClose}></Button>
                 <IconButton
-                style={{backgroundColor: '#00C2CB'}}
+                  style={{ backgroundColor: '#00C2CB' }}
                   size="small"
                   aria-label="close"
                   // color="inherit"
@@ -497,7 +497,7 @@ const Formular = () => {
           />
         </CardActions>
       </form>
-      <Fab aria-label="add" style={{ margin: 15 }}>
+      <Fab aria-label="add" style={{ margin: 15}}>
         <Link href="#" color="inherit">
           <ArrowUpwardTwoToneIcon />{' '}
         </Link>

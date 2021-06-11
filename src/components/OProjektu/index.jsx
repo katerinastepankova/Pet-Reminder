@@ -9,14 +9,14 @@ import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 const OProjektu = () => {
   return (
     <>
-      <h1>O projektu</h1>
+      
       <p className="projektText">
-        Pet Reminder je webová aplikace, která ukládá a eviduje jednotlivé
-        profily domácích mazlíčků. U každého zvířete si majitel může zaznamenat
-        vlastní pravidelně se opakující aktivity typu: očkování, odčervení,
-        strouhání kopyt, narozeniny, apod. Všechna svá zvířata a jejich
-        pravidelné úkony má tak zaznamenány na jednom místě, a jsou mu online
-        kdykoli k dispozici.
+        Pet Reminder je webová aplikace, která vytváří a ukládá do databáze
+        jednotlivé profily domácích mazlíčků. U každého zvířete si majitel může
+        zaznamenat vlastní pravidelně se opakující aktivity typu: očkování,
+        odčervení, narozeniny, apod. Všechna svá zvířata a jejich pravidelné
+        úkony má tak zaznamenány na jednom místě, a jsou mu online kdykoli k
+        dispozici.
         <br />
         <br /> Jednotlivé kartičky konkrétního zvířete jsou chráněny heslem,
         takže se ke svým záznamům dostane pouze jejich autor. Vyhledávat lze dle
@@ -24,9 +24,18 @@ const OProjektu = () => {
         zvířat, vyjede mu po vyhledání seznam všech jeho kartiček.
         <br />
         <br />
-        Do budoucna budou přidány například:
+        <p className="projektText">
+          Aplikace byla vytvořena pomocí těchto technologií a programů:{' '}
+          <span className="bold">
+            html a css, Javascript, REACT JS, Material-UI, Firebase, GitHub.
+          </span>{' '}
         </p>
-        <ul>
+      </p>
+
+      
+      
+          <span className="bold projektText">Do budoucna bude přidána například:</span>
+        <ul className="projektText">
           <li>
             možnost nastavit u každé aktivity také upozornění přes Google
             kalendář nebo emailem
@@ -34,33 +43,34 @@ const OProjektu = () => {
           <li>možnost přidání vlastního fota zvířete</li>
           <li>vytvoření uživatelských profilů jednotlivých majitelů</li>
         </ul>
-        
-        <p className="projektText">
-        Dalším krokem ve vývoji poté bude vytvořit také čistě mobilní verzi
-        aplikace.
+    
+
+      <p className="projektText">
+        Dalším krokem ve vývoji poté bude vytvořit také <span className="bold">
+        čistě mobilní verzi
+          aplikace
+       </span>, s upozorněními typu push, integrovaným kalendářem v přístroji, apod.
         <br />
         <br />
-        Tato aplikace byla vytvořena jako závěrečný projekt čtyřměsíční
-        Digitální akademie WEB pořádané společností Czechitas, z.s. Jedná se o
+        Prozatím se jedná o
         beta verzi. Budu ráda, pokud mě budete kontaktovat v případě jakýchkoli
         návrhů na vylepšení nebo když se někde objeví chyba.
-        </p>
-      
+      </p>
 
       <div className="person">
         <img
           className="personImage2"
-          src="assets/kstepankova1.jpg"
-          alt="Bety"
+          src="assets/kstepankova3.jpg"
+          alt="autorka"
         />
         <div className="personInfo">
-          <h3>O autorce</h3>
-          <p>
+          <h3 className="projektText">O autorce</h3>
+          <p className="projektText">
             Baví mě jásat nad každým sebemenším programovacím úspěchem a těším
             se, že to budu moci už brzy dělat celé dny :-). Doufám, že se tato
-            aplikace stane pro své uživatele nepostradatelnou,  a
-            vzhledem k vyššímu počtu vlastních zvířat oceňuji především
-            očekávaný praktický přínos této aplikace.
+            aplikace stane pro své uživatele nepostradatelnou, a vzhledem k
+            vyššímu počtu vlastních zvířat oceňuji především očekávaný praktický
+            přínos této aplikace.
           </p>
         </div>
       </div>

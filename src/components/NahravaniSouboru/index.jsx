@@ -1,72 +1,47 @@
-// import React, { useEffect, useState } from 'react';
-// import { db, storage } from '../../db';
-// import './style.css';
+import React, { useEffect, useState } from 'react';
+import { db, storage } from '../../db';
+import './style.css';
 
-//   const allInputs = {imgUrl: ''};
-//   const [imageAsFile, setImageAsFile] = useState('');
-//   const [imageAsUrl, setImageAsUrl] = useState(allInputs);
+export const NahravaniSouboru = ({funkce}) => {
+  const [soubor, setSoubor] = useState();
+  // const [popis, setPopis] = useState("");
+  // const [pet, setPet] = useState([]);
 
-//   console.log(imageAsFile)
-//  const handleImageAsFile = (e) => {
-//       const image = e.target.files[0]
-//       setImageAsFile(imageFile => (image))
-//   }
-//   const handleFireBaseUpload = e => {
-//     e.preventDefault()
-//   console.log('start of upload')
-//   // async magic goes here...
-//   if(imageAsFile === '' ) {
-//     console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
-//     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
-//   }
+  // useEffect(
+  //   () =>
+  //     db.collection('Pet').onSnapshot((snapshot) => {
+  //       setPet(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //     }),
+  //   [db],
+  // );
 
-//   }
-// export const NahravaniSouboru = () => {
-//   const [soubor, setSoubor] = useState();
+  const nahrajNaFirebase = (event) => {
+    event.preventDefault();
+    if (!soubor) {
+      return;
+    }
+    storage
+      .ref(`/obrazky/${soubor.name}`)
+      .put(soubor)
+      .then((snapshot) => snapshot.ref.getDownloadURL())
+      .then((urlNahranehoObrazku) => {
+        funkce(urlNahranehoObrazku);
 
-//   const [fotky, setFotky] = useState([]);
-
-//   useEffect(() => 
-  
-//   db.collection("fotky").onSnapshot((snapshot) => {
-//     setFotky(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-//   }),[]
-// );
-// console.log(data);
-
-  
-
-//   const nahrajNaFirebase = (event) => {
-//     event.preventDefault();
-//     if (!soubor) {
-//       return;
-//     }
-//     storage
-//       .ref(`/obrazky/${soubor.name}`)
-//       .put(soubor)
-//       .then((snapshot) => snapshot.ref.getDownloadURL())
-//       .then((urlNahranehoObrazku) => {
-//         db.collection('fotky').add({
-//           url: urlNahranehoObrazku,
-//         });
-//       });
-//   };
-
-//   console.log(NahravaniSouboru);
-
-//   return (
-//     <form onSubmit={nahrajNaFirebase}>
-//       <div className="foto">
-//         <input
-//           type="file"
-//           onChange={(event) => setSoubor(event.target.files[0])}
-//         />
-//         <button>Nahrát</button>
-
-//         {fotky.map((fotka) => (
-//           <img src={fotka.url} className="foto-img" alt="" />
-//         ))}
-//       </div>
-//     </form>
-//   );
-// };
+        //zavolám tu funkci funkce a parametr bude urlNahranehoObrazku  funcke(urlnahraného obrázku) z rodičovské komponenty a předám jí url toho obrázklu do src obrázku ve formuláři
+        
+      });
+  };
+  return (
+    <form onSubmit={nahrajNaFirebase}>
+      <input
+        type="file"
+        onChange={(event) => setSoubor(event.target.files[0])}
+      />
+      <button>Nahrát</button>
+{/* 
+      {pet.map((pet) => (
+        <img src={pet.UrlPic} height="200" alt="" />
+      ))} */}
+    </form>
+  );
+};

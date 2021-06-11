@@ -79,7 +79,7 @@ const PasswordDialog = ({ originalPassword, pet }) => {
           size="medium"
           style={{ color: 'white', backgroundColor: '#737373' }}
         >
-          VÍCE INFORMACÍ
+          OTEVŘÍT
         </Button>
         <Dialog
           open={open}

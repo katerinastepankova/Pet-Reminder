@@ -84,7 +84,6 @@ const AnimalCard = ({ pet }) => {
       alignItems: 'center',
       flexDirection: 'column',
       margin: theme.spacing(1),
-      
     },
     container: {
       flexDirection: 'column',
@@ -113,22 +112,27 @@ const AnimalCard = ({ pet }) => {
   //   setOpenTrigger(true);
   // };
   const [open, setOpen] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const handleClick = () => {
     setOpen(true);
   };
-
-  // const formatDate = (date) =>
-  //   date.seconds === undefined ? date : date.toDate();
-
-  // console.log(pet, formatDate(pet.Birth));
+  const handleClickSnackbar = () => {
+    setOpenSnackbar(true);
+  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    // db.collection('Pet').pet.delete();
     setOpen(false);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   const handleCloseAndDelete = (reason, event) => {
@@ -138,21 +142,23 @@ const AnimalCard = ({ pet }) => {
       db.collection('Pet').doc(pet.id).delete();
       setOpen(false);
     }
+    handleClickSnackbar();
   };
 
   return (
     <>
-     
       <Paper className={classes.card} style={{ backgroundColor: '#EAFFF6 ' }}>
         {pet.Type === 'Kočka' && (
           <CardMedia
             className={classes.media}
             component="img"
             alt="Kočka"
-            image="/assets/Cat2.png"
+            image={pet.UrlPic}
             title="Cat"
           />
         )}
+
+        {/* pokud urlPic není prázdné, tak zobrazím {urlPic}, ale pokud je prázdné, tak zobrazím zástupný obrázek */}
         {pet.Type === 'Pes' && (
           <CardMedia
             className={classes.media}
@@ -204,7 +210,7 @@ const AnimalCard = ({ pet }) => {
             {/* <span>
               {pet.Type} , {differenceInYears(Number(new Date()), Number(formatDate(pet.Birth)))}
             </span> */}
-            <span>{pet.Type==='Nezvoleno'?'Typ nezvolen':pet.Type}</span>
+            <span>{pet.Type === 'Nezvoleno' ? 'Druh nezvolen' : pet.Type}</span>
           </Typography>
         </CardContent>
         <CardActions>
@@ -214,7 +220,11 @@ const AnimalCard = ({ pet }) => {
             <Tooltip disableFocusListener title="Smazat">
               <IconButton
                 onClick={handleClick}
-                style={{ color: '#EAFFF6 ', backgroundColor: '#00C2CB' }}
+                style={{
+                  color: '#EAFFF6 ',
+                  backgroundColor: '#00C2CB',
+                  marginLeft: 30,
+                }}
               >
                 <DeleteForeverTwoToneIcon />
               </IconButton>
@@ -244,9 +254,39 @@ const AnimalCard = ({ pet }) => {
                 >
                   OK
                 </Button>
+                
               </DialogActions>
             </Dialog>
+            
           </div>
+          <Snackbar
+                  style={{ backgroundColor: '#00C2CB' }}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={openSnackbar}
+                  autoHideDuration={3000}
+                  onClose={handleCloseSnackbar}
+                  message="Smazáno"
+                  action={
+                    <React.Fragment>
+                      <Button
+                        size="medium"
+                        onClick={handleCloseSnackbar}
+                      ></Button>
+                      <IconButton
+                        style={{ backgroundColor: '#00C2CB' }}
+                        size="small"
+                        aria-label="close"
+                        // color="inherit"
+                        onClick={handleCloseSnackbar}
+                      >
+                        <CloseIcon fontSize="large" />
+                      </IconButton>
+                    </React.Fragment>
+                  }
+                />
         </CardActions>
       </Paper>
       {/* </Grid>
