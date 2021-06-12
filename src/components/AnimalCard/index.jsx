@@ -148,52 +148,62 @@ const AnimalCard = ({ pet }) => {
   return (
     <>
       <Paper className={classes.card} style={{ backgroundColor: '#EAFFF6 ' }}>
-        {pet.Type === 'Kočka' && (
+        {pet.UrlPic !== '' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Obrazek"
+            image={pet.UrlPic}
+            title="zvire"
+          />
+        )}
+
+        {pet.UrlPic === '' && pet.Type === 'Kočka' && (
           <CardMedia
             className={classes.media}
             component="img"
             alt="Kočka"
-            image={pet.UrlPic}
+            image="/assets/Cat.png"
             title="Cat"
           />
         )}
 
-        {/* pokud urlPic není prázdné, tak zobrazím {urlPic}, ale pokud je prázdné, tak zobrazím zástupný obrázek */}
-        {pet.Type === 'Pes' && (
+        {pet.UrlPic === '' && pet.Type === 'Pes' && (
           <CardMedia
             className={classes.media}
             component="img"
             alt="Pes"
-            image="/assets/Gaspar2.png"
+            image="/assets/Dog.png"
             title="Dog"
           />
         )}
-        {pet.Type === 'Kůň' && (
+        {pet.UrlPic === '' && pet.Type === 'Kůň' && (
           <CardMedia
             className={classes.media}
             component="img"
             alt="Kůň"
-            image="/assets/Horse2.jpg"
-            title="Cat"
-          />
-        )}
-        {pet.Type === 'Nezvoleno' && (
-          <CardMedia
-            className={classes.media}
-            component="img"
-            alt="Nezvoleno"
-            image="/assets/Eyes2.png"
-            title="Not defined"
+            image="/assets/Horse.png"
+            title="Horse"
           />
         )}
 
-        {pet.Type === '' && (
+        {pet.UrlPic === '' && pet.Type === 'Nezvolen' && (
           <CardMedia
             className={classes.media}
             component="img"
-            alt=""
-            image=""
-            title="Not defined"
+            alt="Obrázek"
+            image="/assets/Eyes2.png"
+            title="Eyes"
+          />
+        )}
+
+        {pet.UrlPic === '' && pet.Type === '' && (
+          <CardMedia
+            className={classes.media}
+            component="img"
+            alt="Obrázek"
+            image="/assets/Eyes2.png"
+            title="Eyes"
           />
         )}
 
@@ -254,39 +264,34 @@ const AnimalCard = ({ pet }) => {
                 >
                   OK
                 </Button>
-                
               </DialogActions>
             </Dialog>
-            
           </div>
           <Snackbar
+            style={{ backgroundColor: '#00C2CB' }}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={openSnackbar}
+            autoHideDuration={3000}
+            onClose={handleCloseSnackbar}
+            message="Smazáno"
+            action={
+              <React.Fragment>
+                <Button size="medium" onClick={handleCloseSnackbar}></Button>
+                <IconButton
                   style={{ backgroundColor: '#00C2CB' }}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                  }}
-                  open={openSnackbar}
-                  autoHideDuration={3000}
-                  onClose={handleCloseSnackbar}
-                  message="Smazáno"
-                  action={
-                    <React.Fragment>
-                      <Button
-                        size="medium"
-                        onClick={handleCloseSnackbar}
-                      ></Button>
-                      <IconButton
-                        style={{ backgroundColor: '#00C2CB' }}
-                        size="small"
-                        aria-label="close"
-                        // color="inherit"
-                        onClick={handleCloseSnackbar}
-                      >
-                        <CloseIcon fontSize="large" />
-                      </IconButton>
-                    </React.Fragment>
-                  }
-                />
+                  size="small"
+                  aria-label="close"
+                  // color="inherit"
+                  onClick={handleCloseSnackbar}
+                >
+                  <CloseIcon fontSize="large" />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
         </CardActions>
       </Paper>
       {/* </Grid>

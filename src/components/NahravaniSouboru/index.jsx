@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { db, storage } from '../../db';
 import './style.css';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-export const NahravaniSouboru = ({funkce}) => {
+export const NahravaniSouboru = ({ funkce }) => {
   const [soubor, setSoubor] = useState();
-  // const [popis, setPopis] = useState("");
-  // const [pet, setPet] = useState([]);
-
-  // useEffect(
-  //   () =>
-  //     db.collection('Pet').onSnapshot((snapshot) => {
-  //       setPet(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     }),
-  //   [db],
-  // );
 
   const nahrajNaFirebase = (event) => {
     event.preventDefault();
@@ -26,11 +19,9 @@ export const NahravaniSouboru = ({funkce}) => {
       .then((snapshot) => snapshot.ref.getDownloadURL())
       .then((urlNahranehoObrazku) => {
         funkce(urlNahranehoObrazku);
-
-        //zavolám tu funkci funkce a parametr bude urlNahranehoObrazku  funcke(urlnahraného obrázku) z rodičovské komponenty a předám jí url toho obrázklu do src obrázku ve formuláři
-        
       });
   };
+
   return (
     <form onSubmit={nahrajNaFirebase}>
       <input
@@ -38,10 +29,6 @@ export const NahravaniSouboru = ({funkce}) => {
         onChange={(event) => setSoubor(event.target.files[0])}
       />
       <button>Nahrát</button>
-{/* 
-      {pet.map((pet) => (
-        <img src={pet.UrlPic} height="200" alt="" />
-      ))} */}
     </form>
   );
 };

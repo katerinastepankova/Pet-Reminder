@@ -38,7 +38,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { FormHelperText } from '@material-ui/core';
 import md5 from 'md5';
 import { NahravaniSouboru } from '../NahravaniSouboru';
-// import { NahravaniSouboru } from '../NahravaniSouboru';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -103,7 +102,8 @@ const Formular = () => {
   }, [db, id]);
 
   const handleSubmit = (event) => {
-    if (pet.Password === '' || pet.Owner === '') {//bud vracm dialog na setOpen něco nebo hlášku tooltip nad tlačítko
+    if (pet.Password === '' || pet.Owner === '') {
+      //bud vracm dialog na setOpen něco nebo hlášku tooltip nad tlačítko
       window.alert('Přihlašovací jméno a heslo je před uložením třeba vyplnit');
       return;
     } else if (id === undefined) {
@@ -120,12 +120,17 @@ const Formular = () => {
     console.log(pet);
   };
 
-  const predaniUrl =(url)=>{
-    console.log('x', url)
-    setPet({...pet, UrlPic:url});
+  const predaniUrl = (url) => {
+    setPet({ ...pet, UrlPic: url });
+  };
+
+  const deletePicture = () => {
+    setPet({ ...pet, UrlPic: '' });
+  };
+  {
+    /* tady si vyrobím funkci která bude mít 1 parametr - adresa obrátzku - url - uvnitř té funkce se nastavuje stav v Pet a jemu dovlastnosti uložím tu url, a aby se to uložilo do firebase v rámci onsubmit.
+    ve chvíli kdy sem vložím nahráníSoboru, tu funkci dám jako prop */
   }
-  {/* tady si vyrobím funkci která bude mít 1 parametr - adresa obrátzku - url - uvnitř té funkce se nastavuje stav v Pet a jemu dovlastnosti uložím tu url, a aby se to uložilo do firebase v rámci onsubmit.
-    ve chvíli kdy sem vložím nahráníSoboru, tu funkci dám jako prop */}
 
   const [values, setValues] = React.useState({
     password: '',
@@ -211,12 +216,10 @@ const Formular = () => {
   };
 
   const deleteDateFromActivities = (indexOfActivity, i) => {
-    console.log('klik');
-
     const dateToRemove = pet.Activities[indexOfActivity].dates.splice(i, 1);
 
-    console.log(dateToRemove);
-    console.log(pet.Activities[indexOfActivity].dates);
+    // console.log(dateToRemove);
+    // console.log(pet.Activities[indexOfActivity].dates);
 
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
@@ -253,24 +256,39 @@ const Formular = () => {
         }}
       />
 
-    <img className="img-Form" src={pet.UrlPic}alt="" />  
 
-      {pet.Type === 'Kočka' && (
-        <img className="img-Form" src="/assets/Cat2.png" alt="" />
+      {pet.UrlPic !== '' && (
+        <img className="img-Form" src={pet.UrlPic} alt="" />
       )}
-      {pet.Type === 'Pes' && (
-        <img className="img-Form" src="/assets/Gaspar2.png" alt="" />
+
+      {pet.UrlPic === '' && pet.Type === 'Kočka' && (
+        <img className="img-Form" src="/assets/Cat.png" alt="" />
       )}
-      {pet.Type === 'Kůň' && (
-        <img className="img-Form" src="/assets/Horse2.jpg" alt="" />
+      {pet.UrlPic === '' && pet.Type === 'Pes' && (
+        <img className="img-Form" src="/assets/Dog.png" alt="" />
       )}
-      {pet.Type === 'Nezvolen' && (
+      {pet.UrlPic === '' && pet.Type === 'Kůň' && (
+        <img className="img-Form" src="/assets/Horse.jpg" alt="" />
+      )}
+      {pet.UrlPic === '' && pet.Type === 'Nezvolen' && (
         <img className="img-Form" src="/assets/Eyes2.png" alt="" />
       )}
-      {pet.Type === '' && <img src="" alt="" />}
+      {pet.UrlPic === '' && pet.Type === '' && 
+      <>
+      <div className='misto-pro-obrazek'><p>Nahrej obrázek</p></div>
+      <img src="" alt="" />
+      </>}
 
-      <NahravaniSouboru funkce={predaniUrl}/>
-      <p>{pet.UrlPic}</p>
+      <NahravaniSouboru funkce={predaniUrl} />
+      <Tooltip disableFocusListener title="Odstranit obrázek">
+        <IconButton
+          value={pet.UrlPic}
+          aria-label="delete"
+          onClick={deletePicture}
+        >
+          <HighlightOffIcon />
+        </IconButton>
+      </Tooltip>
 
       <form className={classes.root} noValidate autoComplete="off">
         <TextField
@@ -307,6 +325,9 @@ const Formular = () => {
               handleChangeEveryInput(event, 'Type');
             }}
           >
+            <MenuItem value="">
+              <em>Nic</em>
+            </MenuItem>
             <MenuItem value={'Nezvolen'}>Druh zvířete nezvolen</MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
@@ -497,7 +518,7 @@ const Formular = () => {
           />
         </CardActions>
       </form>
-      <Fab aria-label="add" style={{ margin: 15}}>
+      <Fab aria-label="add" style={{ margin: 15 }}>
         <Link href="#" color="inherit">
           <ArrowUpwardTwoToneIcon />{' '}
         </Link>
