@@ -36,7 +36,7 @@ const Header = ({ searchForHeader, search }) => {
           )}
         </div>
         <div>
-          <p style={{ color: '#737373' }}>
+          <p style={{ color: '#737373', textAlign: 'center' }}>
             (Pro testovací účely lze použít Přihlašovací jméno: Katka, Heslo:
             heslo.)
           </p>

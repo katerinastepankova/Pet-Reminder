@@ -38,13 +38,18 @@ import CardMedia from '@material-ui/core/CardMedia';
 import { FormHelperText } from '@material-ui/core';
 import md5 from 'md5';
 import { NahravaniSouboru } from '../NahravaniSouboru';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
         margin: theme.spacing(1),
-      width:280,
+        width: 280,
       },
       display: 'flex',
       flexDirection: 'column',
@@ -54,7 +59,6 @@ const Formular = () => {
     },
     input: {
       color: '#00C2CB',
-      
     },
     actions: {
       flexDirection: 'column',
@@ -109,14 +113,15 @@ const Formular = () => {
   const handleSubmit = (event) => {
     if (pet.Password === '' || pet.Owner === '') {
       //bud vracm dialog na setOpen něco nebo hlášku tooltip nad tlačítko
-      window.alert('Přihlašovací jméno a heslo je před uložením třeba vyplnit');
+      setOpenDialog(true);
       return;
     } else if (id === undefined) {
       db.collection('Pet').add(pet);
+      handleClick();
     } else {
       db.collection('Pet').doc(id).update(pet);
+      handleClick();
     }
-    handleClick();
   };
 
   const handleChangeEveryInput = (event, nameOfInput) => {
@@ -168,8 +173,16 @@ const Formular = () => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
+  };
+
+  const [openDialog, setOpenDialog] = React.useState(false);
+
+  const handleCloseDialog = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenDialog(false);
   };
 
   const addDateToActivity = (indexOfActivity) => {
@@ -250,9 +263,8 @@ const Formular = () => {
   return (
     <>
       <TextField
-        required
         className={classes.petname}
-        style={{fontSize: 50}}
+        style={{ fontSize: 50 }}
         id="outlined-basic"
         label="Jméno zvířete"
         variant="outlined"
@@ -336,13 +348,14 @@ const Formular = () => {
             <MenuItem value="">
               <em>Nic</em>
             </MenuItem>
-            <MenuItem value={'Nezvolen'}>Druh zvířete nezvolen</MenuItem>
+            <MenuItem value={'Nezvolen'}>Nechci uvádět</MenuItem>
             <MenuItem value={'Pes'}>Pes</MenuItem>
             <MenuItem value={'Kočka'}>Kočka</MenuItem>
             <MenuItem value={'Kůň'}>Kůň</MenuItem>
           </Select>
         </FormControl>
         <TextField
+          required
           className={classes.petname}
           id="outlined-basic"
           label="Vytvoř přihlašovací jméno"
@@ -358,6 +371,7 @@ const Formular = () => {
             Vytvoř heslo
           </InputLabel>
           <OutlinedInput
+            required
             className={classes.petname}
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
@@ -444,7 +458,7 @@ const Formular = () => {
                         type="date"
                         value={formatDate(pet.Activities[index].dates[i])}
                         className={
-                          activity.dates.length === i+1
+                          activity.dates.length === i + 1
                             ? classes.textField
                             : classes.textField1
                         }
@@ -503,6 +517,25 @@ const Formular = () => {
           >
             Uložit
           </Button>
+
+          <Dialog
+            open={openDialog}
+            onClose={handleCloseDialog}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Je třeba zadat přihlašovací jméno a heslo
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseDialog} color="primary">
+                OK
+              </Button>
+            </DialogActions>
+          </Dialog>
+
           <Snackbar
             style={{ backgroundColor: '#00C2CB' }}
             anchorOrigin={{

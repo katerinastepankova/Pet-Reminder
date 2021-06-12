@@ -4,7 +4,6 @@
 }
 .navigace{
   display: flex;
-  
   align-items: center;
   justify-content: center;
 }
@@ -14,5 +13,6 @@
   align-items:center;
   justify-content:center;
   margin-top: 15px;
+  width: 280px;
   
 }
