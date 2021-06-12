@@ -25,7 +25,7 @@ const OProjektu = () => {
         <br />
         <br />
         <p className="projektText">
-          Aplikace byla vytvořena pomocí těchto technologií a programů:{' '}
+          Aplikace byla vytvořena pomocí těchto technologií a softwarů:{' '}
           <span className="bold">
             html a css, Javascript, REACT JS, Material-UI, Firebase, GitHub.
           </span>{' '}
@@ -49,7 +49,7 @@ const OProjektu = () => {
         Dalším krokem ve vývoji poté bude vytvořit také <span className="bold">
         čistě mobilní verzi
           aplikace
-       </span>, s upozorněními typu push, integrovaným kalendářem v přístroji, apod.
+       </span>, s upozorněními typu push propojených s integrovaným kalendářem v přístroji, apod.
         <br />
         <br />
         Prozatím se jedná o

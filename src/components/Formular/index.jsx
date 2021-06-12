@@ -44,7 +44,7 @@ const Formular = () => {
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        // width: '25ch',
+      width:280,
       },
       display: 'flex',
       flexDirection: 'column',
@@ -54,17 +54,22 @@ const Formular = () => {
     },
     input: {
       color: '#00C2CB',
+      
     },
     actions: {
       flexDirection: 'column',
       justifyContent: 'center',
     },
     textField: {
-      marginLeft: theme.spacing(14),
+      marginLeft: theme.spacing(6),
       backgroundColor: 'white',
     },
+    textField1: {
+      marginLeft: theme.spacing(6),
+      backgroundColor: '#EAFFF6 ',
+    },
     petname: {
-      fontSize: '25px',
+      fontSize: 20,
       /*  color: 'red', */
       backgroundColor: 'white',
       marginBottom: theme.spacing(2),
@@ -247,6 +252,7 @@ const Formular = () => {
       <TextField
         required
         className={classes.petname}
+        style={{fontSize: 50}}
         id="outlined-basic"
         label="Jméno zvířete"
         variant="outlined"
@@ -255,7 +261,6 @@ const Formular = () => {
           handleChangeEveryInput(event, 'Name');
         }}
       />
-
 
       {pet.UrlPic !== '' && (
         <img className="img-Form" src={pet.UrlPic} alt="" />
@@ -268,16 +273,19 @@ const Formular = () => {
         <img className="img-Form" src="/assets/Dog.png" alt="" />
       )}
       {pet.UrlPic === '' && pet.Type === 'Kůň' && (
-        <img className="img-Form" src="/assets/Horse.jpg" alt="" />
+        <img className="img-Form" src="/assets/Horse.png" alt="" />
       )}
       {pet.UrlPic === '' && pet.Type === 'Nezvolen' && (
         <img className="img-Form" src="/assets/Eyes2.png" alt="" />
       )}
-      {pet.UrlPic === '' && pet.Type === '' && 
-      <>
-      <div className='misto-pro-obrazek'><p>Nahrej obrázek</p></div>
-      <img src="" alt="" />
-      </>}
+      {pet.UrlPic === '' && pet.Type === '' && (
+        <>
+          <div className="misto-pro-obrazek">
+            <p>Nahrej obrázek</p>
+          </div>
+          <img src="" alt="" />
+        </>
+      )}
 
       <NahravaniSouboru funkce={predaniUrl} />
       <Tooltip disableFocusListener title="Odstranit obrázek">
@@ -435,11 +443,15 @@ const Formular = () => {
                         label="Vyber datum"
                         type="date"
                         value={formatDate(pet.Activities[index].dates[i])}
-                        className={classes.textField}
+                        className={
+                          activity.dates.length === i+1
+                            ? classes.textField
+                            : classes.textField1
+                        }
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        style={{ minWidth: 200 }}
+                        style={{ width: 200 }}
                         onChange={(event) => {
                           handleChangeDateOfActivity(event, index, i);
                         }}
