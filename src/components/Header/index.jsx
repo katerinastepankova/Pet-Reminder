@@ -31,17 +31,16 @@ const Header = ({ searchForHeader, search }) => {
             <>
               <Search onChangeParent={searchForHeader} valueParent={search} />
               <SearchOutlinedIcon />
-         
             </>
           )}
         </div>
-        <div>
+        {currentPath === '/' && (
           <p style={{ color: '#737373', textAlign: 'center' }}>
             (Pro testovací účely lze použít Přihlašovací jméno: Katka, Heslo:
             heslo.)
           </p>
-        </div>
-        
+        )}
+
         <img className="logoHeader" src="/assets/Logo.svg" alt="logo" />
       </div>
     </>

@@ -20,6 +20,9 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
+
 
 const PasswordDialog = ({ originalPassword, pet }) => {
   const history = useHistory();

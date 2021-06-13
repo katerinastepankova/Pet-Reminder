@@ -1,6 +1,25 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
+
+const StyledTextField = styled(TextField)`
+  label.focused {
+    color: #00c2cb;
+    border: 1px solid;
+  }
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: silver;
+    }
+    &:hover fieldset {
+      border-color: #00c2cb;
+    }
+    &.Mui-focused fieldset {
+      border-color: #00c2cb;
+    }
+  }
+`;
 
 const Search = ({ onChangeParent, valueParent }) => {
 
@@ -18,7 +37,7 @@ const Search = ({ onChangeParent, valueParent }) => {
   return (
     <>
       <form className={classes.search} noValidate autoComplete="off">
-        <TextField
+        <StyledTextField
           value={valueParent}
           id="search"
           label="Přihlašovací jméno"
@@ -26,6 +45,10 @@ const Search = ({ onChangeParent, valueParent }) => {
           variant="outlined"
           onChange={(event) => {
             onChangeParent(event.target.value);
+          }}
+          InputLabelProps={{
+            shrink: true,
+            style: { color: '#737373' },
           }}
         />
       </form>

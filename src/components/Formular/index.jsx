@@ -44,6 +44,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 const StyledTextField = styled(TextField)`
   label.focused {
@@ -146,6 +147,24 @@ const Formular = () => {
     }
   }, [db, id]);
 
+  // useEffect(() => {
+
+  //   return () => {setPet({
+  //   UrlPic: '',
+  //   Type: '',
+  //   Password: '',
+  //   Owner: '',
+  //   Name: '',
+  //   Birth: '',
+  //   Activities: [{ name: '', dates: ['2021-01-01'] }],
+  //   }
+  // )};
+  // },
+  // );
+
+  // tady musis nastavit do statu empty peta})
+  const history = useHistory();
+
   const handleSubmit = (event) => {
     if (pet.Password === '' || pet.Owner === '') {
       //bud vracm dialog na setOpen něco nebo hlášku tooltip nad tlačítko
@@ -153,10 +172,31 @@ const Formular = () => {
       return;
     } else if (id === undefined) {
       db.collection('Pet').add(pet);
+      console.log(pet);
+
       handleClick();
+      // history.push(`/editPet/${pet}`);
+      setPet({
+        UrlPic: '',
+        Type: '',
+        Password: '',
+        Owner: '',
+        Name: '',
+        Birth: '',
+        Activities: [{ name: '', dates: ['2021-01-01'] }],
+      });
     } else {
       db.collection('Pet').doc(id).update(pet);
       handleClick();
+      // setPet({
+      //   UrlPic: '',
+      //   Type: '',
+      //   Password: '',
+      //   Owner: '',
+      //   Name: '',
+      //   Birth: '',
+      //   Activities: [{ name: '', dates: ['2021-01-01'] }],
+      // });
     }
   };
 

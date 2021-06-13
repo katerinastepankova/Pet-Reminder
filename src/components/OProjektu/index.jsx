@@ -24,13 +24,14 @@ const OProjektu = () => {
         zvířat, vyjede mu po vyhledání seznam všech jeho kartiček.
         <br />
         <br />
+        </p>
         <p className="projektText">
           Aplikace byla vytvořena pomocí těchto technologií a softwarů:{' '}
           <span className="bold">
             html a css, Javascript, REACT JS, Material-UI, Firebase, GitHub.
           </span>{' '}
         </p>
-      </p>
+      
 
       
       
