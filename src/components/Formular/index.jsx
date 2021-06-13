@@ -23,7 +23,7 @@ import { db, storage } from '../../db';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import { red } from '@material-ui/core/colors';
+import { green, red } from '@material-ui/core/colors';
 import { AddCircle, RowingTwoTone } from '@material-ui/icons';
 import CardActions from '@material-ui/core/CardActions';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -43,6 +43,42 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import styled from 'styled-components';
+
+const StyledTextField = styled(TextField)`
+  label.focused {
+    color: #00c2cb;
+    border: 1px solid;
+  }
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: silver;
+    }
+    &:hover fieldset {
+      border-color: #00c2cb;
+    }
+    &.Mui-focused fieldset {
+      border-color: #00c2cb;
+    }
+  }
+`;
+const StyledOutlinedInput = styled(OutlinedInput)`
+  label.focused {
+    color: #00c2cb;
+    border: 1px solid;
+  }
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: silver;
+    }
+    &:hover fieldset {
+      border-color: #00c2cb;
+    }
+    &.Mui-focused fieldset {
+      border-color: #00c2cb;
+    }
+  }
+`;
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
@@ -262,7 +298,7 @@ const Formular = () => {
 
   return (
     <>
-      <TextField
+      <StyledTextField
         className={classes.petname}
         style={{ fontSize: 50 }}
         id="outlined-basic"
@@ -271,6 +307,10 @@ const Formular = () => {
         value={pet.Name}
         onChange={(event) => {
           handleChangeEveryInput(event, 'Name');
+        }}
+        InputLabelProps={{
+          shrink: true,
+          style: { color: '#737373' },
         }}
       />
 
@@ -293,7 +333,7 @@ const Formular = () => {
       {pet.UrlPic === '' && pet.Type === '' && (
         <>
           <div className="misto-pro-obrazek">
-            <p>Nahrej obrázek</p>
+            <p>Nahraj obrázek</p>
           </div>
           <img src="" alt="" />
         </>
@@ -311,7 +351,7 @@ const Formular = () => {
       </Tooltip>
 
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField
+        <StyledTextField
           className={classes.petname}
           id="date"
           variant="outlined"
@@ -320,6 +360,7 @@ const Formular = () => {
           /*  className={classes.textField} */
           InputLabelProps={{
             shrink: true,
+            style: { color: '#737373' },
           }}
           value={formatDate(pet.Birth)}
           // pet.Birth.toDate()
@@ -333,7 +374,13 @@ const Formular = () => {
           className={classes.formControl}
           className={classes.petname}
         >
-          <InputLabel id="demo-simple-select-outlined-label">
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            InputLabelProps={{
+              shrink: true,
+              style: { color: '#737373' },
+            }}
+          >
             Druh zvířete
           </InputLabel>
           <Select
@@ -343,6 +390,10 @@ const Formular = () => {
             label="Type"
             onChange={(event) => {
               handleChangeEveryInput(event, 'Type');
+            }}
+            InputLabelProps={{
+              shrink: true,
+              style: { color: '#737373' },
             }}
           >
             <MenuItem value="">
@@ -354,7 +405,7 @@ const Formular = () => {
             <MenuItem value={'Kůň'}>Kůň</MenuItem>
           </Select>
         </FormControl>
-        <TextField
+        <StyledTextField
           required
           className={classes.petname}
           id="outlined-basic"
@@ -364,13 +415,24 @@ const Formular = () => {
           onChange={(event) => {
             handleChangeEveryInput(event, 'Owner');
           }}
+          InputLabelProps={{
+            shrink: true,
+            style: { color: '#737373' },
+          }}
         />
 
-        <FormControl className={clsx(classes.margin)} variant="outlined">
+        <FormControl
+          className={clsx(classes.margin)}
+          variant="outlined"
+          InputLabelProps={{
+            shrink: true,
+            style: { color: '#737373' },
+          }}
+        >
           <InputLabel htmlFor="outlined-adornment-password">
             Vytvoř heslo
           </InputLabel>
-          <OutlinedInput
+          <StyledOutlinedInput
             required
             className={classes.petname}
             id="outlined-adornment-password"
@@ -419,7 +481,7 @@ const Formular = () => {
           return (
             <>
               <div className={classes.activity}>
-                <TextField
+                <StyledTextField
                   className={classes.petname}
                   style={{
                     minWidth: 200,
@@ -433,6 +495,10 @@ const Formular = () => {
                   value={pet.Activities[index].name}
                   onChange={(event) => {
                     handleChangeNameOfActivity(event, index);
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { color: '#737373' },
                   }}
                 />
                 <Tooltip disableFocusListener title="Odstranit úkon">
@@ -452,7 +518,7 @@ const Formular = () => {
                 return (
                   <>
                     <div className="activity-item">
-                      <TextField
+                      <StyledTextField
                         id="date"
                         label="Vyber datum"
                         type="date"
@@ -464,6 +530,7 @@ const Formular = () => {
                         }
                         InputLabelProps={{
                           shrink: true,
+                          style: { color: '#737373' },
                         }}
                         style={{ width: 200 }}
                         onChange={(event) => {
