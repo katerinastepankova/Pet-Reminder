@@ -26,7 +26,7 @@ const App = () => {
     setSearch(value);
   };
 
-  console.log('App');
+  
 
   return (
     <>

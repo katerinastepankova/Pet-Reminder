@@ -18,7 +18,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const Nav = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  console.log('Nav');
+  // console.log('Nav');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

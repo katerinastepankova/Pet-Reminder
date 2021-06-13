@@ -38,7 +38,6 @@ const OProjektu = () => {
           možnost nastavit u každé aktivity také upozornění přes Google kalendář
           nebo emailem
         </li>
-        <li>možnost přidání vlastního fota zvířete</li>
         <li>vytvoření uživatelských profilů jednotlivých majitelů</li>
       </ul>
 

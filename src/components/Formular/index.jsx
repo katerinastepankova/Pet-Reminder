@@ -152,10 +152,7 @@ const Formular = () => {
       return;
     } else if (id === undefined) {
       db.collection('Pet').add(pet);
-      console.log(pet);
-
       handleClick();
-      // history.push(`/editPet/${pet}`);
       setPet({
         UrlPic: '',
         Type: '',
@@ -182,7 +179,6 @@ const Formular = () => {
 
   const handleChangeEveryInput = (event, nameOfInput) => {
     setPet({ ...pet, [nameOfInput]: event.target.value });
-    console.log(pet);
   };
 
   const predaniUrl = (url) => {

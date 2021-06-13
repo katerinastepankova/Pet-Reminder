@@ -14,12 +14,12 @@ const HomePage = ({ searchText }) => {
   const [pets, setPets] = useState([]);
 
   useEffect(() => {
-    console.log(db);
+    // console.log(db);
     return db
       .collection('Pet')
 
       .onSnapshot((snapshot) => {
-        console.log(snapshot.docs);
+        // console.log(snapshot.docs);
         setPets(
           snapshot.docs.map((doc) => {
             const data = doc.data();
@@ -31,7 +31,7 @@ const HomePage = ({ searchText }) => {
       });
   }, [db]);
 
-  console.log(searchText);
+  // console.log(searchText);
   return (
     <>
       <div className="HPBody">
