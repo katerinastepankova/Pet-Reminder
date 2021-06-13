@@ -22,7 +22,6 @@ const StyledTextField = styled(TextField)`
 `;
 
 const Search = ({ onChangeParent, valueParent }) => {
-
   const useStyles = makeStyles((theme) => ({
     search: {
       '& .MuiTextField-root': {

@@ -1,18 +1,16 @@
-.logoHeader{
+.logoHeader {
   height: 200px;
-
 }
-.navigace{
+.navigace {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.header{
+.header {
   display: flex;
   flex-direction: column;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   margin-top: 15px;
   width: 280px;
-  
 }

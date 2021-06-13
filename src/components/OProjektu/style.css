@@ -1,5 +1,5 @@
 .projektText {
-  margin: 5px  15px 0px 15px;
+  margin: 5px 15px 0px 15px;
   padding: 25px;
   color: #737373;
 }
@@ -31,9 +31,9 @@ h1 {
     flex-direction: column;
   }
 }
-.bold{
+.bold {
   font-weight: 600;
 }
-.green{
-  color: #00C2CB 
+.green {
+  color: #00c2cb;
 }

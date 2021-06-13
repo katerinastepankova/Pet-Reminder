@@ -12,31 +12,21 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 import { createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 import CloseIcon from '@material-ui/icons/Close';
-import { AddCircle, RowingTwoTone } from '@material-ui/icons';
-import { Box } from '@material-ui/core';
 import { db } from '../../db';
 import { TextField } from '@material-ui/core';
 import PasswordDialog from '../PasswordDialog';
-import { borders } from '@material-ui/system';
-import { differenceInYears } from 'date-fns';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Tooltip from '@material-ui/core/Tooltip';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const AnimalCard = ({ pet }) => {
   const theme = createMuiTheme({
@@ -102,15 +92,6 @@ const AnimalCard = ({ pet }) => {
 
   const classes = useStyles();
 
-  // const [openTrigger, setOpenTrigger] = React.useState(false);
-
-  // const handleTooltipClose = () => {
-  //   setOpenTrigger(false);
-  // };
-
-  // const handleTooltipOpen = () => {
-  //   setOpenTrigger(true);
-  // };
   const [open, setOpen] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
@@ -217,9 +198,6 @@ const AnimalCard = ({ pet }) => {
             component="h6"
             style={{ color: '#737373 ' }}
           >
-            {/* <span>
-              {pet.Type} , {differenceInYears(Number(new Date()), Number(formatDate(pet.Birth)))}
-            </span> */}
             <span>{pet.Type === 'Nezvoleno' ? 'Druh nezvolen' : pet.Type}</span>
           </Typography>
         </CardContent>
@@ -294,10 +272,6 @@ const AnimalCard = ({ pet }) => {
           />
         </CardActions>
       </Paper>
-      {/* </Grid>
-
-        
-      </Grid> */}
     </>
   );
 };

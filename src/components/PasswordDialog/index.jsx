@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -21,8 +20,6 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-
-
 
 const PasswordDialog = ({ originalPassword, pet }) => {
   const history = useHistory();
@@ -90,19 +87,18 @@ const PasswordDialog = ({ originalPassword, pet }) => {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">PŘIHLÁŠENÍ</DialogTitle>
-          <DialogContent >
+          <DialogContent>
             <DialogContentText>
               Prosím zadej své heslo a potvrď tlačítkem OK
             </DialogContentText>
             <FormControl
-           
               className={clsx(classes.margin, classes.textField)}
               variant="outlined"
             >
               <InputLabel htmlFor="outlined-adornment-password">
                 Heslo
               </InputLabel>
-              <OutlinedInput 
+              <OutlinedInput
                 id="outlined-adornment-password"
                 type={values.showPassword ? 'text' : 'password'}
                 value={values.password}
@@ -124,16 +120,14 @@ const PasswordDialog = ({ originalPassword, pet }) => {
             </FormControl>
           </DialogContent>
 
-          <DialogActions >
+          <DialogActions>
             <Button onClick={handleClose} color="#737373">
               ZPĚT
             </Button>
-        
-            <Button  onClick={handlePotvrdilHeslo} color="#737373"
-             >
+
+            <Button onClick={handlePotvrdilHeslo} color="#737373">
               OK
             </Button>
-          
           </DialogActions>
         </Dialog>
       </div>

@@ -29,38 +29,54 @@ const Nav = () => {
   };
   return (
     <>
-      
-        <div className="menu-container">
-          <Button
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-            style={{ color: '#00C2CB ' , fontSize: '25px'}}
+      <div className="menu-container">
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          style={{ color: '#00C2CB ', fontSize: '25px' }}
+        >
+          <MenuIcon style={{ fontSize: 50, color: '#737373' }} />
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            exact
+            to="/"
+            activeClassName="selected"
           >
-            <MenuIcon  style={{fontSize: 50, color: '#737373'}}/>
-          </Button>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          
-
+            <MenuItem style={{ color: '#737373' }} onClick={handleClose}>
+              Domů
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            exact
+            to="/oprojektu"
+            activeClassName="selected"
           >
-            <NavLink style={{textDecoration: 'none'}} exact to="/" activeClassName="selected">
-              <MenuItem style={{color: '#737373' }} onClick={handleClose}>Domů</MenuItem>
-            </NavLink>
-            <NavLink style={{textDecoration: 'none'}} exact to="/oprojektu" activeClassName="selected">
-              <MenuItem style={{color: '#737373' }} onClick={handleClose}>O projektu</MenuItem>
-            </NavLink>
-            <NavLink style={{textDecoration: 'none'}} exact to="/create" activeClassName="selected">
-              <MenuItem style={{color: '#737373' }} onClick={handleClose}>Nový záznam</MenuItem>
-            </NavLink>
-          </Menu>
-          
-        </div>
-     
+            <MenuItem style={{ color: '#737373' }} onClick={handleClose}>
+              O projektu
+            </MenuItem>
+          </NavLink>
+          <NavLink
+            style={{ textDecoration: 'none' }}
+            exact
+            to="/create"
+            activeClassName="selected"
+          >
+            <MenuItem style={{ color: '#737373' }} onClick={handleClose}>
+              Nový záznam
+            </MenuItem>
+          </NavLink>
+        </Menu>
+      </div>
     </>
   );
 };

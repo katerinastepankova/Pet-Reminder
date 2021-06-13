@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import HomePage from './components/HomePage';
 import AnimalCard from './components/AnimalCard';
@@ -23,19 +23,18 @@ import { db, storage } from './db';
 const App = () => {
   const [search, setSearch] = useState('');
   const handleSearchChange = (value) => {
-    setSearch(value);}
-
+    setSearch(value);
+  };
 
   console.log('App');
 
   return (
     <>
- <div className="app-container">
-<Router>
-<Header search={search} searchForHeader={handleSearchChange}/>
+      <div className="app-container">
+        <Router>
+          <Header search={search} searchForHeader={handleSearchChange} />
 
-
-<Switch>
+          <Switch>
             <Route exact path="/">
               <HomePage searchText={search} />
             </Route>
@@ -48,15 +47,12 @@ const App = () => {
             <Route exact path="/editPet/:id">
               <Formular />
             </Route>
-
           </Switch>
-<Footer/>
-
-</Router>
-  </div>
-  
- </>
-  )
+          <Footer />
+        </Router>
+      </div>
+    </>
+  );
 };
 
 render(<App />, document.querySelector('#app'));

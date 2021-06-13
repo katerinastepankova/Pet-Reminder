@@ -16,23 +16,9 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
 import { createMuiTheme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Snackbar from '@material-ui/core/Snackbar';
-import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
-import CloseIcon from '@material-ui/icons/Close';
-import { AddCircle, RowingTwoTone } from '@material-ui/icons';
-import { Box, Dialog } from '@material-ui/core';
-import { DialogTitle } from '@material-ui/core';
-import { DialogContent } from '@material-ui/core';
-import { DialogActions } from '@material-ui/core';
-import { DialogContentText } from '@material-ui/core';
-import { TextField } from '@material-ui/core';
-import PasswordDialog from '../PasswordDialog';
-import { borders } from '@material-ui/system';
-import { differenceInYears } from 'date-fns';
+import { AddCircle } from '@material-ui/icons';
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,7 +27,6 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const CreateAnimal = () => {
   const theme = createMuiTheme({
@@ -68,7 +53,6 @@ const CreateAnimal = () => {
         contrastText: '#000',
       },
     },
-   
   });
 
   const useStyles = makeStyles({
@@ -130,42 +114,28 @@ const CreateAnimal = () => {
     setOpenTooltip(true);
   };
 
- 
-
   return (
-    // <Grid
-    //   className={classes.container}
-    //   container
-    //   direction="row"
-    //   spacing={2}
-    //   justify="center"
-    // >
-    //   <Grid item xs={12} sm={6} md={4} className={classes.grid}>
-        <Paper className={classes.card} style={{ backgroundColor: 'white' }}>
-          <CardMedia
-            className={classes.media}
-            component="img"
-            alt="Paw"
-            image="/assets/paw.png"
-            title="Nový záznam"
-          />
-          <CardContent>
-            <Typography
-              variant="h5"
-              component="h5"
-              style={{ color: '#737373' }}
-            >
-              Nový záznam
-            </Typography>
-            <Typography
-              variant="h6"
-              color="textSecondary"
-              component="h6"
-              style={{ color: 'white' }}
-            ></Typography>
-          </CardContent>
-          <CardActions className={classes.actions}>
-          <NavLink exact to="/create" activeClassName="selected">
+    <Paper className={classes.card} style={{ backgroundColor: 'white' }}>
+      <CardMedia
+        className={classes.media}
+        component="img"
+        alt="Paw"
+        image="/assets/paw.png"
+        title="Nový záznam"
+      />
+      <CardContent>
+        <Typography variant="h5" component="h5" style={{ color: '#737373' }}>
+          Nový záznam
+        </Typography>
+        <Typography
+          variant="h6"
+          color="textSecondary"
+          component="h6"
+          style={{ color: 'white' }}
+        ></Typography>
+      </CardContent>
+      <CardActions className={classes.actions}>
+        <NavLink exact to="/create" activeClassName="selected">
           <Tooltip disableFocusListener title="Přidat zvíře">
             <IconButton
               color="primary"
@@ -176,12 +146,10 @@ const CreateAnimal = () => {
             >
               <AddCircle size="Large" />
             </IconButton>
-            </Tooltip>
-            </NavLink>
-          </CardActions>
-        </Paper>
-    //   </Grid>
-    // </Grid>
+          </Tooltip>
+        </NavLink>
+      </CardActions>
+    </Paper>
   );
 };
 

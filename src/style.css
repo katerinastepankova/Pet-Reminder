@@ -4,7 +4,6 @@
 #EAFFF6 – světle zelená
 #E72B8E - růžová */
 
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 * {
@@ -15,14 +14,10 @@ html {
   font-family: 'Open Sans', sans-serif;
 }
 
-
-
-
-
-.app-container{
+.app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FAFAE7;
+  background-color: #fafae7;
   min-width: 280px;
 }

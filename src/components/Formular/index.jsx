@@ -22,7 +22,6 @@ import { useParams } from 'react-router-dom';
 import { db, storage } from '../../db';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { green, red } from '@material-ui/core/colors';
 import { AddCircle, RowingTwoTone } from '@material-ui/icons';
 import CardActions from '@material-ui/core/CardActions';
@@ -47,23 +46,6 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 const StyledTextField = styled(TextField)`
-  label.focused {
-    color: #00c2cb;
-    border: 1px solid;
-  }
-  .MuiOutlinedInput-root {
-    fieldset {
-      border-color: silver;
-    }
-    &:hover fieldset {
-      border-color: #00c2cb;
-    }
-    &.Mui-focused fieldset {
-      border-color: #00c2cb;
-    }
-  }
-`;
-const StyledOutlinedInput = styled(OutlinedInput)`
   label.focused {
     color: #00c2cb;
     border: 1px solid;
@@ -134,40 +116,21 @@ const Formular = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // console.log(id);
     if (id !== undefined) {
       return db
         .collection('Pet')
         .doc(id)
         .get()
         .then((snapshot) => {
-          /*  console.log('text', snapshot.data()); */
           setPet(snapshot.data());
         });
     }
   }, [db, id]);
 
-  // useEffect(() => {
-
-  //   return () => {setPet({
-  //   UrlPic: '',
-  //   Type: '',
-  //   Password: '',
-  //   Owner: '',
-  //   Name: '',
-  //   Birth: '',
-  //   Activities: [{ name: '', dates: ['2021-01-01'] }],
-  //   }
-  // )};
-  // },
-  // );
-
-  // tady musis nastavit do statu empty peta})
   const history = useHistory();
 
   const handleSubmit = (event) => {
     if (pet.Password === '' || pet.Owner === '') {
-      //bud vracm dialog na setOpen něco nebo hlášku tooltip nad tlačítko
       setOpenDialog(true);
       return;
     } else if (id === undefined) {
@@ -201,7 +164,6 @@ const Formular = () => {
   };
 
   const handleChangeEveryInput = (event, nameOfInput) => {
-    /*   console.log(event.target.value); */
     setPet({ ...pet, [nameOfInput]: event.target.value });
     console.log(pet);
   };
@@ -213,10 +175,6 @@ const Formular = () => {
   const deletePicture = () => {
     setPet({ ...pet, UrlPic: '' });
   };
-  {
-    /* tady si vyrobím funkci která bude mít 1 parametr - adresa obrátzku - url - uvnitř té funkce se nastavuje stav v Pet a jemu dovlastnosti uložím tu url, a aby se to uložilo do firebase v rámci onsubmit.
-    ve chvíli kdy sem vložím nahráníSoboru, tu funkci dám jako prop */
-  }
 
   const [values, setValues] = React.useState({
     password: '',
@@ -233,9 +191,6 @@ const Formular = () => {
 
   const handleChangePassword = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
-  };
-  const handleChange = (event) => {
-    // setAge(event.target.value);
   };
 
   const classes = useStyles();
@@ -262,10 +217,9 @@ const Formular = () => {
   };
 
   const addDateToActivity = (indexOfActivity) => {
-    //kvůli referencím, aby se dobře měnily to dávám do nového arraye, procházím staryý array activities  apoud se mi index activity rovná tomu, kterýho se to týká, tak musím přepsat daný atribut
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
-        return { ...activity, dates: [...activity.dates, ...[new Date()]] }; //přidá to tam nový datum do arraye dates
+        return { ...activity, dates: [...activity.dates, ...[new Date()]] };
       }
       return activity;
     });
@@ -283,7 +237,7 @@ const Formular = () => {
   const handleChangeNameOfActivity = (event, indexOfActivity) => {
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
-        return { ...activity, name: event.target.value }; //tady to mění name tý aktivity
+        return { ...activity, name: event.target.value };
       }
       return activity;
     });
@@ -291,18 +245,16 @@ const Formular = () => {
   };
 
   const handleChangeDateOfActivity = (event, indexOfActivity, indexOfDate) => {
-    /*  console.log(event.target.value); */
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
         const newDatesArray = activity.dates.map((date, i) => {
-          /*  console.log(i, indexOfDate); */
           if (i === indexOfDate) {
             return event.target.value;
           }
           return date;
         });
-        /*  console.log(newDatesArray); */
-        return { ...activity, dates: newDatesArray }; //mění exitující datum v petovi
+
+        return { ...activity, dates: newDatesArray };
       }
       return activity;
     });
@@ -312,12 +264,8 @@ const Formular = () => {
   const deleteDateFromActivities = (indexOfActivity, i) => {
     const dateToRemove = pet.Activities[indexOfActivity].dates.splice(i, 1);
 
-    // console.log(dateToRemove);
-    // console.log(pet.Activities[indexOfActivity].dates);
-
     const newActivitiesArray = pet.Activities.map((activity, index) => {
       if (index === indexOfActivity) {
-        /* return { ...activity, dates: !dateToRemove }; */
         return { ...activity, dates: pet.Activities[indexOfActivity].dates };
       }
       return activity;
@@ -397,13 +345,11 @@ const Formular = () => {
           variant="outlined"
           label="Datum narození"
           type="date"
-          /*  className={classes.textField} */
           InputLabelProps={{
             shrink: true,
             style: { color: '#737373' },
           }}
           value={formatDate(pet.Birth)}
-          // pet.Birth.toDate()
           onChange={(event) => {
             handleChangeEveryInput(event, 'Birth');
           }}
@@ -470,7 +416,7 @@ const Formular = () => {
           }}
         >
           <InputLabel htmlFor="outlined-adornment-password">
-            Vytvoř heslo
+            Vytvoř heslo*
           </InputLabel>
           <StyledOutlinedInput
             required

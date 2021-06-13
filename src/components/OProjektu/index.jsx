@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css';
 import { Paper } from '@material-ui/core';
-import { Avatar } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import Link from '@material-ui/core/Link';
 import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
@@ -9,7 +8,6 @@ import ArrowUpwardTwoToneIcon from '@material-ui/icons/ArrowUpwardTwoTone';
 const OProjektu = () => {
   return (
     <>
-      
       <p className="projektText">
         Pet Reminder je webová aplikace, která vytváří a ukládá do databáze
         jednotlivé profily domácích mazlíčků. U každého zvířete si majitel může
@@ -24,38 +22,35 @@ const OProjektu = () => {
         zvířat, vyjede mu po vyhledání seznam všech jeho kartiček.
         <br />
         <br />
-        </p>
-        <p className="projektText">
-          Aplikace byla vytvořena pomocí těchto technologií a softwarů:{' '}
-          <span className="bold">
-            html a css, Javascript, REACT JS, Material-UI, Firebase, GitHub.
-          </span>{' '}
-        </p>
-      
+      </p>
+      <p className="projektText">
+        Aplikace byla vytvořena pomocí těchto technologií a softwarů:{' '}
+        <span className="bold">
+          html a css, Javascript, REACT JS, Material-UI, Firebase, GitHub.
+        </span>{' '}
+      </p>
 
-      
-      
-          <span className="bold projektText">Do budoucna bude přidána například:</span>
-        <ul className="projektText">
-          <li>
-            možnost nastavit u každé aktivity také upozornění přes Google
-            kalendář nebo emailem
-          </li>
-          <li>možnost přidání vlastního fota zvířete</li>
-          <li>vytvoření uživatelských profilů jednotlivých majitelů</li>
-        </ul>
-    
+      <span className="bold projektText">
+        Do budoucna bude přidána například:
+      </span>
+      <ul className="projektText">
+        <li>
+          možnost nastavit u každé aktivity také upozornění přes Google kalendář
+          nebo emailem
+        </li>
+        <li>možnost přidání vlastního fota zvířete</li>
+        <li>vytvoření uživatelských profilů jednotlivých majitelů</li>
+      </ul>
 
       <p className="projektText">
-        Dalším krokem ve vývoji poté bude vytvořit také <span className="bold">
-        čistě mobilní verzi
-          aplikace
-       </span>, s upozorněními typu push propojených s integrovaným kalendářem v přístroji, apod.
+        Dalším krokem ve vývoji poté bude vytvořit také{' '}
+        <span className="bold">čistě mobilní verzi aplikace</span>, s
+        upozorněními typu push propojených s integrovaným kalendářem v
+        přístroji, apod.
         <br />
         <br />
-        Prozatím se jedná o
-        beta verzi. Budu ráda, pokud mě budete kontaktovat v případě jakýchkoli
-        návrhů na vylepšení nebo když se někde objeví chyba.
+        Prozatím se jedná o beta verzi. Budu ráda, pokud mě budete kontaktovat v
+        případě jakýchkoli návrhů na vylepšení nebo když se někde objeví chyba.
       </p>
 
       <div className="person">
