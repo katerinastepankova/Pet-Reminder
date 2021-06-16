@@ -62,23 +62,7 @@ const StyledTextField = styled(TextField)`
     }
   }
 `;
-// const StyledOutlinedInput = styled(StyledOutlinedInput)`
-//   label.focused {
-//     color: #00c2cb;
-//     border: 1px solid;
-//   }
-//   .MuiOutlinedInput-root {
-//     fieldset {
-//       border-color: silver;
-//     }
-//     &:hover fieldset {
-//       border-color: #00c2cb;
-//     }
-//     &.Mui-focused fieldset {
-//       border-color: #00c2cb;
-//     }
-//   }
-// `;
+
 
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({

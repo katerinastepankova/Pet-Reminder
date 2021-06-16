@@ -27,6 +27,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Tooltip from '@material-ui/core/Tooltip';
+import PasswordDialogDeleteCard from '../PasswordDialogDeleteCard';
 
 const AnimalCard = ({ pet }) => {
   const theme = createMuiTheme({
@@ -116,7 +117,7 @@ const AnimalCard = ({ pet }) => {
     setOpenSnackbar(false);
   };
 
-  const handleCloseAndDelete = (reason, event) => {
+  const handleCloseAndDelete = (reason) => {
     if (reason === 'clickaway') {
       return;
     } else {
@@ -203,8 +204,10 @@ const AnimalCard = ({ pet }) => {
         </CardContent>
         <CardActions>
           <PasswordDialog originalPassword={pet.Password} pet={pet.id} />
+          <PasswordDialogDeleteCard originalPassword={pet.Password} pet={pet.id}/>
+        
 
-          <div>
+          {/* <div>
             <Tooltip disableFocusListener title="Smazat">
               <IconButton
                 onClick={handleClick}
@@ -244,7 +247,7 @@ const AnimalCard = ({ pet }) => {
                 </Button>
               </DialogActions>
             </Dialog>
-          </div>
+          </div> */}
           <Snackbar
             style={{ backgroundColor: '#00C2CB' }}
             anchorOrigin={{

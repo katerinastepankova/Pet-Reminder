@@ -33,12 +33,12 @@ const Header = ({ searchForHeader, search }) => {
             </>
           )}
         </div>
-        {currentPath === '/' && (
+        {/* {currentPath === '/' && (
           <p style={{ color: '#737373', textAlign: 'center' }}>
             (Pro testovací účely lze použít Přihlašovací jméno: Katka, Heslo:
             heslo.)
           </p>
-        )}
+        )} */}
 
         <img className="logoHeader" src="/assets/Logo.svg" alt="logo" />
       </div>
