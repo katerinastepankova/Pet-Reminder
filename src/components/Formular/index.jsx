@@ -63,15 +63,15 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-
 const Formular = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        width: 280,
+        width: 290,
       },
       display: 'flex',
+      // flexWrap: 'wrap',
       flexDirection: 'column',
       justifyContent: 'center',
       backgroundColor: '#EAFFF6',
@@ -81,7 +81,8 @@ const Formular = () => {
       color: '#00C2CB',
     },
     actions: {
-      flexDirection: 'column',
+      // flexDirection: 'row',
+      // flexWrap: 'wrap',
       justifyContent: 'center',
     },
     textField: {
@@ -101,6 +102,8 @@ const Formular = () => {
     },
     activity: {
       display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
     },
   }));
 
@@ -443,6 +446,7 @@ const Formular = () => {
         <h3 style={{ color: '#00C2CB', textAlign: 'center' }}>
           Pravidelné úkony:
         </h3>
+     
 
         <CardActions className={classes.actions}>
           <Tooltip disableFocusListener title="Přidat úkon">
@@ -460,9 +464,12 @@ const Formular = () => {
             </IconButton>
           </Tooltip>
         </CardActions>
+
         {pet.Activities.map((activity, index) => {
           return (
             <>
+              {/* <div className="activity">
+                <div> */}
               <div className={classes.activity}>
                 <StyledTextField
                   className={classes.petname}
@@ -494,68 +501,70 @@ const Formular = () => {
                     <HighlightOffIcon />
                   </IconButton>
                 </Tooltip>
-              </div>
 
-              {activity.dates.map((date, i) => {
-                //ukazuju ty Datepickery
-                return (
-                  <>
-                    <div className="activity-item">
-                      <StyledTextField
-                        id="date"
-                        label="Vyber datum"
-                        type="date"
-                        value={formatDate(pet.Activities[index].dates[i])}
-                        className={
-                          activity.dates.length === i + 1
-                            ? classes.textField
-                            : classes.textField1
-                        }
-                        InputLabelProps={{
-                          shrink: true,
-                          style: { color: '#737373' },
-                        }}
-                        style={{ width: 200 }}
-                        onChange={(event) => {
-                          handleChangeDateOfActivity(event, index, i);
-                        }}
-                      />
-                      <Tooltip disableFocusListener title="Odstranit záznam">
-                        <IconButton
-                          aria-label="delete"
-                          onClick={() => {
-                            deleteDateFromActivities(index, i);
+                {activity.dates.map((date, i) => {
+                  //ukazuju ty Datepickery
+                  return (
+                    <>
+                      <div className="activity-item">
+                        <StyledTextField
+                          id="date"
+                          label="Vyber datum"
+                          type="date"
+                          value={formatDate(pet.Activities[index].dates[i])}
+                          className={
+                            activity.dates.length === i + 1
+                              ? classes.textField
+                              : classes.textField1
+                          }
+                          InputLabelProps={{
+                            shrink: true,
+                            style: { color: '#737373' },
                           }}
-                        >
-                          <HighlightOffIcon />
-                        </IconButton>
-                      </Tooltip>
+                          style={{ width: 200 }}
+                          onChange={(event) => {
+                            handleChangeDateOfActivity(event, index, i);
+                          }}
+                        />
+                        <Tooltip disableFocusListener title="Odstranit záznam">
+                          <IconButton
+                            aria-label="delete"
+                            onClick={() => {
+                              deleteDateFromActivities(index, i);
+                            }}
+                          >
+                            <HighlightOffIcon />
+                          </IconButton>
+                        </Tooltip>
 
-                      {activity.dates.length === i + 1 && ( //tlačítko přidej se ukazuje pouze u poseldního pickeru
-                        <CardActions className={classes.actions}>
-                          <Tooltip disableFocusListener title="Přidat datum">
-                            <IconButton
-                              color="primary"
-                              aria-label="Nový záznam"
-                              onClick={() => addDateToActivity(index)}
-                              size="small"
-                              style={{
-                                color: '#EAFFF6 ',
-                                backgroundColor: '#00C2CB',
-                              }}
-                            >
-                              <AddCircle size="small" />
-                            </IconButton>
-                          </Tooltip>
-                        </CardActions>
-                      )}
-                    </div>
-                  </>
-                );
-              })}
+                        {activity.dates.length === i + 1 && ( //tlačítko přidej se ukazuje pouze u posledního pickeru
+                          <CardActions className={classes.actions}>
+                            <Tooltip disableFocusListener title="Přidat datum">
+                              <IconButton
+                                color="primary"
+                                aria-label="Nový záznam"
+                                onClick={() => addDateToActivity(index)}
+                                size="small"
+                                style={{
+                                  color: '#EAFFF6 ',
+                                  backgroundColor: '#00C2CB',
+                                }}
+                              >
+                                <AddCircle size="small" />
+                              </IconButton>
+                            </Tooltip>
+                          </CardActions>
+                        )}
+                      </div>
+                    </>
+                  );
+                })}
+                {/* </div> */}
+              </div>
             </>
           );
         })}
+
         <CardActions className={classes.actions}>
           <Button
             style={{ backgroundColor: '#737373' }}

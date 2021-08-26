@@ -1,9 +1,18 @@
-.HPBody{
-  background-color: #FAFAE7;
-  min-height: 600px ;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 3px;
+@media screen and (max-width: 400px) {
+  .HPBody {
+    background-color: #fafae7;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 3px;
+  }
 }
 
+.HPBody {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
